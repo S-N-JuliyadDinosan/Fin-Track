@@ -1,0 +1,402 @@
+<!doctype html>
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>FinTrack - Settings</title>
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800;900&amp;family=Inter:wght@400;500;600&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-container-highest": "#e1e2ed",
+              "inverse-on-surface": "#f0f0fb",
+              "on-tertiary": "#ffffff",
+              surface: "#faf8ff",
+              "outline-variant": "#c3c6d7",
+              "on-primary-fixed": "#00174b",
+              "on-tertiary-container": "#ffecea",
+              outline: "#737686",
+              "on-error-container": "#93000a",
+              "on-tertiary-fixed": "#410004",
+              "on-surface-variant": "#434655",
+              "tertiary-fixed-dim": "#ffb3ad",
+              "primary-fixed": "#dbe1ff",
+              "on-surface": "#191b23",
+              "surface-container-low": "#f3f3fe",
+              primary: "#004ac6",
+              "secondary-fixed-dim": "#4ae176",
+              error: "#ba1a1a",
+              "surface-tint": "#0053db",
+              background: "#faf8ff",
+              "surface-container-lowest": "#ffffff",
+              "surface-variant": "#e1e2ed",
+              "on-error": "#ffffff",
+              "surface-dim": "#d9d9e5",
+              "on-secondary-fixed": "#002109",
+              "on-secondary": "#ffffff",
+              "surface-bright": "#faf8ff",
+              "primary-fixed-dim": "#b4c5ff",
+              secondary: "#006e2f",
+              "on-tertiary-fixed-variant": "#930013",
+              "error-container": "#ffdad6",
+              "surface-container-high": "#e7e7f3",
+              "secondary-container": "#6bff8f",
+              "on-primary-container": "#eeefff",
+              "on-primary-fixed-variant": "#003ea8",
+              "primary-container": "#2563eb",
+              "on-primary": "#ffffff",
+              "on-secondary-fixed-variant": "#005321",
+              "tertiary-container": "#cf2c30",
+              tertiary: "#ab0b1c",
+              "secondary-fixed": "#6bff8f",
+              "on-background": "#191b23",
+              "tertiary-fixed": "#ffdad7",
+              "inverse-surface": "#2e3039",
+              "on-secondary-container": "#007432",
+              "inverse-primary": "#b4c5ff",
+              "surface-container": "#ededf9",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+            spacing: {
+              "2xl": "48px",
+              base: "8px",
+              sm: "8px",
+              xs: "4px",
+              "container-max": "1280px",
+              lg: "24px",
+              md: "16px",
+              "3xl": "64px",
+              gutter: "24px",
+              xl: "32px",
+            },
+            fontFamily: {
+              h2: ["Manrope"],
+              "label-sm": ["Inter"],
+              "label-md": ["Inter"],
+              "body-sm": ["Inter"],
+              "body-lg": ["Inter"],
+              display: ["Manrope"],
+              h1: ["Manrope"],
+              "body-md": ["Inter"],
+            },
+            fontSize: {
+              h2: ["20px", { lineHeight: "1.4", fontWeight: "600" }],
+              "label-sm": ["12px", { lineHeight: "1.2", fontWeight: "600" }],
+              "label-md": [
+                "14px",
+                {
+                  lineHeight: "1.2",
+                  letterSpacing: "0.01em",
+                  fontWeight: "500",
+                },
+              ],
+              "body-sm": ["14px", { lineHeight: "1.5", fontWeight: "400" }],
+              "body-lg": ["18px", { lineHeight: "1.6", fontWeight: "400" }],
+              display: [
+                "36px",
+                {
+                  lineHeight: "1.2",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "700",
+                },
+              ],
+              h1: ["24px", { lineHeight: "1.3", fontWeight: "600" }],
+              "body-md": ["16px", { lineHeight: "1.5", fontWeight: "400" }],
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+        vertical-align: middle;
+      }
+      .elevation-1 {
+        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.05);
+      }
+    </style>
+  </head>
+  <body class="bg-background font-body-md text-on-surface antialiased">
+    <!-- SideNavBar - Consistent with all other pages -->
+    <aside
+      class="fixed left-0 top-0 flex flex-col h-full z-50 bg-white border-r border-slate-200 h-screen w-64 font-manrope antialiased transition-all duration-200 ease-in-out"
+    >
+      <div class="p-6 flex items-center gap-3">
+        <div
+          class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white"
+        >
+          <span
+            class="material-symbols-outlined"
+            style="font-variation-settings: &quot;FILL&quot; 1"
+            >account_balance_wallet</span
+          >
+        </div>
+        <div>
+          <h1 class="text-xl font-black text-slate-900">FinTrack</h1>
+          <p class="text-xs text-slate-500 uppercase tracking-wider font-bold">
+            Personal Wealth
+          </p>
+        </div>
+      </div>
+
+      <nav class="flex-1 mt-6 px-4 space-y-2">
+        <a
+          class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 hover:text-slate-900 transition-all duration-200 ease-in-out"
+          href="index.html"
+        >
+          <span class="material-symbols-outlined">dashboard</span>
+          <span class="font-label-md text-label-md">Dashboard</span>
+        </a>
+        <a
+          class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 hover:text-slate-900 transition-all duration-200 ease-in-out"
+          href="transactions.html"
+        >
+          <span class="material-symbols-outlined">receipt_long</span>
+          <span class="font-label-md text-label-md">Transactions</span>
+        </a>
+        <a
+          class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 hover:text-slate-900 transition-all duration-200 ease-in-out"
+          href="analytics.html"
+        >
+          <span class="material-symbols-outlined">analytics</span>
+          <span class="font-label-md text-label-md">Analytics</span>
+        </a>
+        <a
+          class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 hover:text-slate-900 transition-all duration-200 ease-in-out"
+          href="budget.html"
+        >
+          <span class="material-symbols-outlined">account_balance_wallet</span>
+          <span class="font-label-md text-label-md">Budget</span>
+        </a>
+        <a
+          class="flex items-center gap-3 px-4 py-3 bg-blue-50 text-blue-600 font-semibold border-r-4 border-blue-600 transition-all duration-200 ease-in-out"
+          href="settings.html"
+        >
+          <span class="material-symbols-outlined">settings</span>
+          <span class="font-label-md text-label-md">Settings</span>
+        </a>
+      </nav>
+
+      <div class="p-4 mt-auto border-t border-slate-100">
+        <div
+          class="flex items-center gap-3 p-2 bg-surface-container-low rounded-xl"
+        >
+          <img
+            alt="User Profile"
+            class="w-10 h-10 rounded-full border-2 border-white shadow-sm"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAs77p-vP8nU90Ps89eS5qj6_aeiRvVgrN7no6dbPxT2_oKdZyyS03XLULtpy_Pp38RV0285HcoBlThPyoO-D2wlwkr4FZD2NC-9BjTz02B-VrpZU9eucKhikLj06U98w7UdTEJ-rzFE3R0t_lKtkRRtGMuBHljONct60UR95-RcAQmI9s6PmaE9FCm9-5GJ3y26cbNUBk9O2XfP_ZzJod50elOps-O4lcAqJpW7NaObJYUQbz1INLDY8cOg5z-_vi87mKzLsVv73EI"
+          />
+          <div class="overflow-hidden">
+            <p class="font-label-md text-on-surface truncate">Alex Sterling</p>
+            <p class="text-[10px] text-slate-500 truncate">Premium Member</p>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- TopNavBar -->
+    <header
+      class="sticky top-0 w-full flex items-center justify-between px-6 z-40 ml-64 bg-white/80 backdrop-blur-md h-16 border-b border-slate-200 shadow-sm"
+      style="width: calc(100% - 16rem)"
+    >
+      <div class="flex items-center gap-4">
+        <h2 class="font-h2 text-h2 text-slate-900">Settings</h2>
+      </div>
+      <div class="flex items-center gap-6">
+        <div class="flex items-center gap-4 text-slate-500">
+          <button class="hover:text-blue-600 transition-colors">
+            <span class="material-symbols-outlined">dark_mode</span>
+          </button>
+          <div class="relative">
+            <button class="hover:text-blue-600 transition-colors">
+              <span class="material-symbols-outlined">notifications</span>
+            </button>
+            <span
+              class="absolute -top-1 -right-1 w-2 h-2 bg-error rounded-full border-2 border-white"
+            ></span>
+          </div>
+          <button class="hover:text-blue-600 transition-colors">
+            <span class="material-symbols-outlined">help</span>
+          </button>
+        </div>
+        <div class="h-8 w-[1px] bg-slate-200"></div>
+        <p class="text-sm font-medium text-slate-600">October 2023</p>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="ml-64 p-8 min-h-screen bg-surface">
+      <div class="max-w-4xl mx-auto space-y-10">
+        <!-- Profile Settings -->
+        <section>
+          <div class="mb-6">
+            <h2 class="font-h2 text-h2">Profile Settings</h2>
+            <p class="text-slate-500">
+              Manage your personal information and account details.
+            </p>
+          </div>
+          <div class="bg-white rounded-2xl elevation-1 p-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label class="block text-label-md text-slate-500 mb-2"
+                  >Full Name</label
+                >
+                <input
+                  class="w-full px-5 py-3 border border-slate-200 rounded-2xl focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
+                  type="text"
+                  value="Alexander Sterling"
+                />
+              </div>
+              <div>
+                <label class="block text-label-md text-slate-500 mb-2"
+                  >Email Address</label
+                >
+                <input
+                  class="w-full px-5 py-3 border border-slate-200 rounded-2xl focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
+                  type="email"
+                  value="alex.sterling@fintrack.pro"
+                />
+              </div>
+            </div>
+            <div class="mt-8 flex justify-end">
+              <button
+                class="bg-primary text-white px-8 py-3 rounded-2xl font-medium hover:bg-blue-700 transition-colors"
+              >
+                Save Changes
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Appearance -->
+        <section>
+          <div class="mb-6">
+            <h2 class="font-h2 text-h2">Appearance</h2>
+            <p class="text-slate-500">Customize how FinTrack looks for you.</p>
+          </div>
+          <div
+            class="bg-white rounded-2xl elevation-1 p-8 flex items-center justify-between"
+          >
+            <div class="flex items-center gap-5">
+              <div
+                class="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center text-primary"
+              >
+                <span class="material-symbols-outlined text-3xl"
+                  >dark_mode</span
+                >
+              </div>
+              <div>
+                <h3 class="font-medium">Dark Mode</h3>
+                <p class="text-sm text-slate-500">
+                  Reduce eye strain in low light
+                </p>
+              </div>
+            </div>
+            <label class="relative inline-flex items-center cursor-pointer">
+              <input type="checkbox" class="sr-only peer" checked />
+              <div
+                class="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border after:border-gray-300 after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"
+              ></div>
+            </label>
+          </div>
+        </section>
+
+        <!-- Data Management -->
+        <section>
+          <div class="mb-6">
+            <h2 class="font-h2 text-h2">Data Management</h2>
+            <p class="text-slate-500">
+              Export your data or manage your account storage.
+            </p>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Backup & Export -->
+            <div class="bg-white rounded-2xl elevation-1 p-8">
+              <div class="flex items-center gap-4 mb-6">
+                <span class="material-symbols-outlined text-primary text-3xl"
+                  >database</span
+                >
+                <h3 class="font-medium">Backup & Sync</h3>
+              </div>
+              <div class="space-y-3">
+                <button
+                  class="w-full flex items-center justify-between p-4 bg-slate-50 hover:bg-slate-100 rounded-2xl transition-colors group"
+                >
+                  <div class="flex items-center gap-3">
+                    <span
+                      class="material-symbols-outlined text-slate-500 group-hover:text-primary"
+                      >upload_file</span
+                    >
+                    <span class="font-medium">Import Data</span>
+                  </div>
+                  <span class="material-symbols-outlined text-slate-400"
+                    >chevron_right</span
+                  >
+                </button>
+                <button
+                  class="w-full flex items-center justify-between p-4 bg-slate-50 hover:bg-slate-100 rounded-2xl transition-colors group"
+                >
+                  <div class="flex items-center gap-3">
+                    <span
+                      class="material-symbols-outlined text-slate-500 group-hover:text-primary"
+                      >download</span
+                    >
+                    <span class="font-medium">Export to JSON</span>
+                  </div>
+                  <span class="material-symbols-outlined text-slate-400"
+                    >chevron_right</span
+                  >
+                </button>
+              </div>
+            </div>
+
+            <!-- Danger Zone -->
+            <div
+              class="bg-white rounded-2xl elevation-1 p-8 border border-red-100"
+            >
+              <div class="flex items-center gap-4 mb-6">
+                <span class="material-symbols-outlined text-tertiary text-3xl"
+                  >warning</span
+                >
+                <h3 class="font-medium text-tertiary">Danger Zone</h3>
+              </div>
+              <p class="text-sm text-slate-600 mb-6">
+                Clearing all data will permanently delete every transaction,
+                budget, and setting. This action cannot be undone.
+              </p>
+              <button
+                class="w-full py-3 border border-tertiary text-tertiary font-medium rounded-2xl hover:bg-red-50 transition-colors"
+              >
+                Clear All Data
+              </button>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,623 @@
+<!doctype html>
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>FinTrack - Transactions</title>
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800;900&amp;family=Inter:wght@400;500;600&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            fontSize: {
+              h2: ["20px", { lineHeight: "1.4", fontWeight: "600" }],
+              "label-sm": ["12px", { lineHeight: "1.2", fontWeight: "600" }],
+              "label-md": [
+                "14px",
+                {
+                  lineHeight: "1.2",
+                  letterSpacing: "0.01em",
+                  fontWeight: "500",
+                },
+              ],
+              "body-sm": ["14px", { lineHeight: "1.5", fontWeight: "400" }],
+              "body-lg": ["18px", { lineHeight: "1.6", fontWeight: "400" }],
+              display: [
+                "36px",
+                {
+                  lineHeight: "1.2",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "700",
+                },
+              ],
+              h1: ["24px", { lineHeight: "1.3", fontWeight: "600" }],
+              "body-md": ["16px", { lineHeight: "1.5", fontWeight: "400" }],
+            },
+            colors: {
+              "surface-container-highest": "#e1e2ed",
+              "inverse-on-surface": "#f0f0fb",
+              "on-tertiary": "#ffffff",
+              surface: "#faf8ff",
+              "outline-variant": "#c3c6d7",
+              "on-primary-fixed": "#00174b",
+              "on-tertiary-container": "#ffecea",
+              outline: "#737686",
+              "on-error-container": "#93000a",
+              "on-tertiary-fixed": "#410004",
+              "on-surface-variant": "#434655",
+              "tertiary-fixed-dim": "#ffb3ad",
+              "primary-fixed": "#dbe1ff",
+              "on-surface": "#191b23",
+              "surface-container-low": "#f3f3fe",
+              primary: "#004ac6",
+              "secondary-fixed-dim": "#4ae176",
+              error: "#ba1a1a",
+              "surface-tint": "#0053db",
+              background: "#faf8ff",
+              "surface-container-lowest": "#ffffff",
+              "surface-variant": "#e1e2ed",
+              "on-error": "#ffffff",
+              "surface-dim": "#d9d9e5",
+              "on-secondary-fixed": "#002109",
+              "on-secondary": "#ffffff",
+              "surface-bright": "#faf8ff",
+              "primary-fixed-dim": "#b4c5ff",
+              secondary: "#006e2f",
+              "on-tertiary-fixed-variant": "#930013",
+              "error-container": "#ffdad6",
+              "surface-container-high": "#e7e7f3",
+              "secondary-container": "#6bff8f",
+              "on-primary-container": "#eeefff",
+              "on-primary-fixed-variant": "#003ea8",
+              "primary-container": "#2563eb",
+              "on-primary": "#ffffff",
+              "on-secondary-fixed-variant": "#005321",
+              "tertiary-container": "#cf2c30",
+              tertiary: "#ab0b1c",
+              "secondary-fixed": "#6bff8f",
+              "on-background": "#191b23",
+              "tertiary-fixed": "#ffdad7",
+              "inverse-surface": "#2e3039",
+              "on-secondary-container": "#007432",
+              "inverse-primary": "#b4c5ff",
+              "surface-container": "#ededf9",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+            fontFamily: {
+              h2: ["Manrope"],
+              "label-sm": ["Inter"],
+              "label-md": ["Inter"],
+              "body-sm": ["Inter"],
+              "body-lg": ["Inter"],
+              display: ["Manrope"],
+              h1: ["Manrope"],
+              "body-md": ["Inter"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+        vertical-align: middle;
+      }
+      .elevation-1 {
+        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.05);
+      }
+    </style>
+  </head>
+  <body class="bg-background font-body-md text-on-surface antialiased">
+    <!-- SideNavBar -->
+    <aside
+      class="fixed left-0 top-0 flex flex-col h-full z-50 bg-white border-r border-slate-200 h-screen w-64 font-manrope antialiased transition-all duration-200 ease-in-out"
+    >
+      <div class="p-6 flex items-center gap-3">
+        <div
+          class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white"
+        >
+          <span class="material-symbols-outlined">payments</span>
+        </div>
+        <div>
+          <h1 class="text-xl font-black text-slate-900">FinTrack</h1>
+          <p class="text-xs text-slate-500 uppercase tracking-wider font-bold">
+            Personal Wealth
+          </p>
+        </div>
+      </div>
+
+      <nav class="flex-1 mt-6 px-4 space-y-2">
+        <a
+          class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50"
+          href="index.html"
+        >
+          <span class="material-symbols-outlined">dashboard</span>
+          <span class="font-label-md">Dashboard</span>
+        </a>
+        <a
+          class="flex items-center gap-3 px-4 py-3 bg-blue-50 text-blue-600 font-semibold border-r-4 border-blue-600"
+          href="transactions.html"
+        >
+          <span class="material-symbols-outlined">receipt_long</span>
+          <span class="font-label-md">Transactions</span>
+        </a>
+        <a
+          class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50"
+          href="analytics.html"
+        >
+          <span class="material-symbols-outlined">analytics</span>
+          <span class="font-label-md">Analytics</span>
+        </a>
+        <a
+          class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50"
+          href="budget.html"
+        >
+          <span class="material-symbols-outlined">account_balance_wallet</span>
+          <span class="font-label-md">Budget</span>
+        </a>
+        <a
+          class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50"
+          href="settings.html"
+        >
+          <span class="material-symbols-outlined">settings</span>
+          <span class="font-label-md">Settings</span>
+        </a>
+      </nav>
+
+      <div class="p-4 mt-auto border-t border-slate-100">
+        <div
+          class="flex items-center gap-3 p-2 bg-surface-container-low rounded-xl"
+        >
+          <img
+            alt="User Profile"
+            class="w-10 h-10 rounded-full border-2 border-white shadow-sm"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAs77p-vP8nU90Ps89eS5qj6_aeiRvVgrN7no6dbPxT2_oKdZyyS03XLULtpy_Pp38RV0285HcoBlThPyoO-D2wlwkr4FZD2NC-9BjTz02B-VrpZU9eucKhikLj06U98w7UdTEJ-rzFE3R0t_lKtkRRtGMuBHljONct60UR95-RcAQmI9s6PmaE9FCm9-5GJ3y26cbNUBk9O2XfP_ZzJod50elOps-O4lcAqJpW7NaObJYUQbz1INLDY8cOg5z-_vi87mKzLsVv73EI"
+          />
+          <div class="overflow-hidden">
+            <p
+              class="font-label-md text-on-surface truncate"
+              id="display-username"
+            ></p>
+            <p class="text-[10px] text-slate-500 truncate">Member</p>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- TopNavBar -->
+    <header
+      class="sticky top-0 w-full flex items-center justify-between px-6 z-40 ml-64 bg-white/80 backdrop-blur-md h-16 border-b border-slate-200 shadow-sm"
+      style="width: calc(100% - 16rem)"
+    >
+      <div class="flex items-center gap-4">
+        <h2 class="font-h2 text-h2 text-slate-900">Transactions</h2>
+      </div>
+      <div class="flex items-center gap-6">
+        <div class="flex items-center gap-4 text-slate-500">
+          <button class="hover:text-blue-600 transition-colors">
+            <span class="material-symbols-outlined">dark_mode</span>
+          </button>
+          <button
+            onclick="logout()"
+            class="hover:text-blue-600 transition-colors"
+          >
+            <span class="material-symbols-outlined">logout</span>
+          </button>
+        </div>
+        <div class="h-8 w-[1px] bg-slate-200"></div>
+        <p id="current-date" class="text-sm font-medium text-slate-600"></p>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="ml-64 p-8 min-h-screen bg-surface">
+      <div class="max-w-7xl mx-auto space-y-8">
+        <!-- Filter Bar -->
+        <div
+          class="flex flex-col lg:flex-row gap-4 items-start lg:items-center justify-between"
+        >
+          <div class="flex flex-col sm:flex-row gap-4 w-full lg:w-auto">
+            <!-- Search -->
+            <div class="relative flex-1 min-w-[280px]">
+              <span
+                class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"
+                >search</span
+              >
+              <input
+                id="search-input"
+                class="w-full pl-11 pr-4 py-3 bg-white border border-slate-200 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                placeholder="Search transactions..."
+                type="text"
+              />
+            </div>
+
+            <!-- Category Filter -->
+            <select
+              id="category-filter"
+              class="bg-white border border-slate-200 rounded-2xl px-5 py-3 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary"
+            >
+              <option value="">All Categories</option>
+            </select>
+          </div>
+
+          <button
+            onclick="showQuickAddModal()"
+            class="flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-2xl font-semibold shadow-sm hover:bg-blue-700 transition-all"
+          >
+            <span class="material-symbols-outlined">add_circle</span>
+            Add Transaction
+          </button>
+        </div>
+
+        <!-- Transactions Table -->
+        <div class="bg-white rounded-3xl elevation-1 overflow-hidden">
+          <div class="overflow-x-auto">
+            <table class="w-full text-left">
+              <thead
+                class="bg-surface-container-low text-slate-500 font-label-sm uppercase tracking-wider"
+              >
+                <tr>
+                  <th class="px-6 py-5">Description</th>
+                  <th class="px-6 py-5">Category</th>
+                  <th class="px-6 py-5">Date</th>
+                  <th class="px-6 py-5 text-right">Amount</th>
+                  <th class="px-6 py-5 text-center">Action</th>
+                </tr>
+              </thead>
+              <tbody
+                id="transactions-body"
+                class="divide-y divide-slate-100"
+              ></tbody>
+            </table>
+          </div>
+        </div>
+        <div
+          id="pagination"
+          class="flex justify-center items-center gap-2 mt-6"
+        ></div>
+      </div>
+    </main>
+
+    <!-- Quick Add Modal -->
+    <div
+      id="quick-add-modal"
+      class="hidden fixed inset-0 bg-black/60 flex items-center justify-center z-50"
+    >
+      <div class="bg-white rounded-3xl p-8 w-full max-w-md">
+        <h3 class="text-2xl font-semibold mb-6">Add New Transaction</h3>
+        <form id="modal-form" class="space-y-5">
+          <div>
+            <label class="block text-sm font-medium text-slate-600 mb-1"
+              >Description</label
+            >
+            <input
+              id="modal-desc"
+              class="w-full px-4 py-3 border border-slate-300 rounded-2xl focus:outline-none focus:border-primary"
+              placeholder="What was this for?"
+              required
+            />
+          </div>
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm font-medium text-slate-600 mb-1"
+                >Amount</label
+              >
+              <input
+                id="modal-amount"
+                type="number"
+                step="0.01"
+                class="w-full px-4 py-3 border border-slate-300 rounded-2xl focus:outline-none focus:border-primary"
+                placeholder="0.00"
+                required
+              />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-slate-600 mb-1"
+                >Date</label
+              >
+              <input
+                id="modal-date"
+                type="date"
+                class="w-full px-4 py-3 border border-slate-300 rounded-2xl focus:outline-none focus:border-primary"
+                required
+              />
+            </div>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-slate-600 mb-1"
+              >Category</label
+            >
+            <select
+              id="modal-category"
+              class="w-full px-4 py-3 border border-slate-300 rounded-2xl focus:outline-none focus:border-primary"
+            ></select>
+          </div>
+          <div class="flex gap-3 pt-4">
+            <button
+              type="button"
+              onclick="hideQuickAddModal()"
+              class="flex-1 py-3 border border-slate-300 rounded-2xl font-medium"
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              class="flex-1 py-3 bg-primary text-white rounded-2xl font-semibold"
+            >
+              Save Transaction
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      const categories = [
+        "Income",
+        "Food & Dining",
+        "Housing",
+        "Transportation",
+        "Entertainment",
+        "Shopping",
+        "Utilities",
+        "Healthcare",
+        "Education",
+        "Travel",
+        "Miscellaneous",
+      ];
+
+      let currentUser = null;
+      let transactions = [];
+
+      // 🔥 Pagination state
+      let currentPage = 1;
+      const rowsPerPage = 10;
+      let filteredData = [];
+
+      // ==================== AUTH ====================
+      function showMainApp() {
+        document.getElementById("display-username").textContent = currentUser;
+
+        document.getElementById("current-date").textContent =
+          new Date().toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "short",
+            day: "numeric",
+          });
+
+        loadData();
+        populateAllCategories();
+
+        filteredData = [...transactions];
+        renderTransactions();
+      }
+
+      function loadData() {
+        transactions = JSON.parse(
+          localStorage.getItem(`transactions_${currentUser}`) || "[]",
+        );
+      }
+
+      function saveData() {
+        localStorage.setItem(
+          `transactions_${currentUser}`,
+          JSON.stringify(transactions),
+        );
+      }
+
+      function logout() {
+        if (confirm("Are you sure you want to logout?")) {
+          localStorage.removeItem("fintrack_current_user");
+          location.reload();
+        }
+      }
+
+      // ==================== CATEGORY ====================
+      function populateAllCategories() {
+        const select = document.getElementById("category-filter");
+
+        select.innerHTML = `<option value="">All Categories</option>`;
+
+        categories.forEach((cat) => {
+          const opt = document.createElement("option");
+          opt.value = cat;
+          opt.textContent = cat;
+          select.appendChild(opt);
+        });
+      }
+
+      // ==================== RENDER ====================
+      function renderTransactions() {
+        const tbody = document.getElementById("transactions-body");
+        tbody.innerHTML = "";
+
+        if (filteredData.length === 0) {
+          tbody.innerHTML = `<tr><td colspan="5" class="px-6 py-12 text-center text-slate-400">No transactions found</td></tr>`;
+          document.getElementById("pagination").innerHTML = "";
+          return;
+        }
+
+        // 🔥 Pagination slice
+        const start = (currentPage - 1) * rowsPerPage;
+        const paginated = filteredData.slice(start, start + rowsPerPage);
+
+        paginated.forEach((tx) => {
+          const isIncome = tx.category === "Income";
+
+          const row = document.createElement("tr");
+          row.className = "hover:bg-slate-50";
+
+          row.innerHTML = `
+        <td class="px-6 py-5 font-medium">${tx.description}</td>
+        <td class="px-6 py-5">
+          <span class="px-4 py-1 text-xs rounded-full ${
+            isIncome
+              ? "bg-green-100 text-green-700"
+              : "bg-orange-100 text-orange-700"
+          }">${tx.category}</span>
+        </td>
+        <td class="px-6 py-5 text-slate-500">${tx.date}</td>
+        <td class="px-6 py-5 font-bold text-right ${
+          isIncome ? "text-secondary" : "text-tertiary"
+        }">
+          ${isIncome ? "+" : "-"}$${Math.abs(tx.amount).toFixed(2)}
+        </td>
+        <td class="px-6 py-5 text-center">
+          <button onclick="deleteTransaction(${tx.id})"
+            class="text-slate-400 hover:text-red-600">
+            <span class="material-symbols-outlined">delete</span>
+          </button>
+        </td>
+      `;
+
+          tbody.appendChild(row);
+        });
+
+        renderPagination();
+      }
+
+      function renderPagination() {
+        const container = document.getElementById("pagination");
+        container.innerHTML = "";
+
+        const totalPages = Math.ceil(filteredData.length / rowsPerPage);
+
+        for (let i = 1; i <= totalPages; i++) {
+          const btn = document.createElement("button");
+
+          btn.textContent = i;
+
+          btn.className =
+            "px-3 py-1 border rounded " +
+            (i === currentPage
+              ? "bg-primary text-white"
+              : "bg-white hover:bg-slate-100");
+
+          btn.onclick = () => {
+            currentPage = i;
+            renderTransactions();
+          };
+
+          container.appendChild(btn);
+        }
+      }
+
+      function deleteTransaction(id) {
+        if (confirm("Delete this transaction?")) {
+          transactions = transactions.filter((t) => t.id !== id);
+          saveData();
+          filterTransactions(); // 🔥 keep filters applied
+        }
+      }
+
+      // ==================== SEARCH ====================
+      function filterTransactions() {
+        const searchTerm = document
+          .getElementById("search-input")
+          .value.toLowerCase()
+          .trim();
+
+        const categoryFilter = document.getElementById("category-filter").value;
+
+        filteredData = transactions.filter((tx) => {
+          const matchesSearch =
+            tx.description.toLowerCase().includes(searchTerm) ||
+            tx.category.toLowerCase().includes(searchTerm) ||
+            tx.date.toLowerCase().includes(searchTerm) ||
+            tx.amount.toString().includes(searchTerm);
+
+          const matchesCategory =
+            categoryFilter === "" || tx.category === categoryFilter;
+
+          return matchesSearch && matchesCategory;
+        });
+
+        currentPage = 1;
+        renderTransactions();
+      }
+
+      // ==================== MODAL ====================
+      function showQuickAddModal() {
+        document.getElementById("quick-add-modal").classList.remove("hidden");
+        document.getElementById("modal-date").valueAsDate = new Date();
+      }
+
+      function hideQuickAddModal() {
+        document.getElementById("quick-add-modal").classList.add("hidden");
+        document.getElementById("modal-form").reset();
+      }
+
+      document
+        .getElementById("modal-form")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const desc = document.getElementById("modal-desc").value.trim();
+          const amount = parseFloat(
+            document.getElementById("modal-amount").value,
+          );
+          const date = document.getElementById("modal-date").value;
+          const category = document.getElementById("modal-category").value;
+
+          if (!desc || !amount || !date || !category) {
+            alert("Please fill all fields");
+            return;
+          }
+
+          transactions.unshift({
+            id: Date.now(),
+            description: desc,
+            amount,
+            date,
+            category,
+          });
+
+          saveData();
+          filterTransactions(); // 🔥 keep filters + pagination working
+          hideQuickAddModal();
+        });
+
+      // ==================== EVENTS ====================
+      document
+        .getElementById("search-input")
+        .addEventListener("input", filterTransactions);
+
+      document
+        .getElementById("category-filter")
+        .addEventListener("change", filterTransactions);
+
+      // ==================== INIT ====================
+      window.onload = function () {
+        const savedUser = localStorage.getItem("fintrack_current_user");
+
+        if (savedUser) {
+          currentUser = savedUser;
+          showMainApp();
+        } else {
+          window.location.href = "index.html";
+        }
+      };
+    </script>
+  </body>
+</html>
