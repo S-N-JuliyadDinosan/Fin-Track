@@ -4,7 +4,18 @@
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>FinTrack - Transactions</title>
+    <script>
+      (function () {
+        const theme = localStorage.getItem("fintrack_theme");
 
+        if (theme === "dark") {
+          document.documentElement.classList.add("dark");
+        } else {
+          document.documentElement.classList.remove("dark");
+        }
+      })();
+    </script>
+    
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link
       href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800;900&amp;family=Inter:wght@400;500;600&amp;display=swap"
@@ -20,30 +31,6 @@
         darkMode: "class",
         theme: {
           extend: {
-            fontSize: {
-              h2: ["20px", { lineHeight: "1.4", fontWeight: "600" }],
-              "label-sm": ["12px", { lineHeight: "1.2", fontWeight: "600" }],
-              "label-md": [
-                "14px",
-                {
-                  lineHeight: "1.2",
-                  letterSpacing: "0.01em",
-                  fontWeight: "500",
-                },
-              ],
-              "body-sm": ["14px", { lineHeight: "1.5", fontWeight: "400" }],
-              "body-lg": ["18px", { lineHeight: "1.6", fontWeight: "400" }],
-              display: [
-                "36px",
-                {
-                  lineHeight: "1.2",
-                  letterSpacing: "-0.02em",
-                  fontWeight: "700",
-                },
-              ],
-              h1: ["24px", { lineHeight: "1.3", fontWeight: "600" }],
-              "body-md": ["16px", { lineHeight: "1.5", fontWeight: "400" }],
-            },
             colors: {
               "surface-container-highest": "#e1e2ed",
               "inverse-on-surface": "#f0f0fb",
@@ -109,6 +96,30 @@
               h1: ["Manrope"],
               "body-md": ["Inter"],
             },
+            fontSize: {
+              h2: ["20px", { lineHeight: "1.4", fontWeight: "600" }],
+              "label-sm": ["12px", { lineHeight: "1.2", fontWeight: "600" }],
+              "label-md": [
+                "14px",
+                {
+                  lineHeight: "1.2",
+                  letterSpacing: "0.01em",
+                  fontWeight: "500",
+                },
+              ],
+              "body-sm": ["14px", { lineHeight: "1.5", fontWeight: "400" }],
+              "body-lg": ["18px", { lineHeight: "1.6", fontWeight: "400" }],
+              display: [
+                "36px",
+                {
+                  lineHeight: "1.2",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "700",
+                },
+              ],
+              h1: ["24px", { lineHeight: "1.3", fontWeight: "600" }],
+              "body-md": ["16px", { lineHeight: "1.5", fontWeight: "400" }],
+            },
           },
         },
       };
@@ -129,9 +140,9 @@
     </style>
   </head>
   <body class="bg-background font-body-md text-on-surface antialiased">
-    <!-- SideNavBar -->
+    <!-- SideNavBar - Exact same as index.html -->
     <aside
-      class="fixed left-0 top-0 flex flex-col h-full z-50 bg-white border-r border-slate-200 h-screen w-64 font-manrope antialiased transition-all duration-200 ease-in-out"
+      class="fixed left-0 top-0 flex flex-col h-full z-50 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-700 h-screen w-64 font-manrope antialiased transition-all duration-200 ease-in-out"
     >
       <div class="p-6 flex items-center gap-3">
         <div
@@ -140,8 +151,12 @@
           <span class="material-symbols-outlined">payments</span>
         </div>
         <div>
-          <h1 class="text-xl font-black text-slate-900">FinTrack</h1>
-          <p class="text-xs text-slate-500 uppercase tracking-wider font-bold">
+          <h1 class="text-xl font-black text-slate-900 dark:text-white">
+            FinTrack
+          </h1>
+          <p
+            class="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider font-bold"
+          >
             Personal Wealth
           </p>
         </div>
@@ -149,35 +164,35 @@
 
       <nav class="flex-1 mt-6 px-4 space-y-2">
         <a
-          class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50"
+          class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800"
           href="index.html"
         >
           <span class="material-symbols-outlined">dashboard</span>
           <span class="font-label-md">Dashboard</span>
         </a>
         <a
-          class="flex items-center gap-3 px-4 py-3 bg-blue-50 text-blue-600 font-semibold border-r-4 border-blue-600"
+          class="flex items-center gap-3 px-4 py-3 bg-blue-50 dark:bg-blue-950 text-blue-600 font-semibold border-r-4 border-blue-600"
           href="transactions.html"
         >
           <span class="material-symbols-outlined">receipt_long</span>
           <span class="font-label-md">Transactions</span>
         </a>
         <a
-          class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50"
+          class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800"
           href="analytics.html"
         >
           <span class="material-symbols-outlined">analytics</span>
           <span class="font-label-md">Analytics</span>
         </a>
         <a
-          class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50"
+          class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800"
           href="budget.html"
         >
           <span class="material-symbols-outlined">account_balance_wallet</span>
           <span class="font-label-md">Budget</span>
         </a>
         <a
-          class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50"
+          class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800"
           href="settings.html"
         >
           <span class="material-symbols-outlined">settings</span>
@@ -185,9 +200,9 @@
         </a>
       </nav>
 
-      <div class="p-4 mt-auto border-t border-slate-100">
+      <div class="p-4 mt-auto border-t border-slate-100 dark:border-slate-700">
         <div
-          class="flex items-center gap-3 p-2 bg-surface-container-low rounded-xl"
+          class="flex items-center gap-3 p-2 bg-surface-container-low dark:bg-slate-800 rounded-xl"
         >
           <img
             alt="User Profile"
@@ -196,10 +211,14 @@
           />
           <div class="overflow-hidden">
             <p
-              class="font-label-md text-on-surface truncate"
+              class="font-label-md text-on-surface dark:text-white truncate"
               id="display-username"
-            ></p>
-            <p class="text-[10px] text-slate-500 truncate">Member</p>
+            >
+              Alex Sterling
+            </p>
+            <p class="text-[10px] text-slate-500 dark:text-slate-400 truncate">
+              Premium Member
+            </p>
           </div>
         </div>
       </div>
@@ -207,38 +226,48 @@
 
     <!-- TopNavBar -->
     <header
-      class="sticky top-0 w-full flex items-center justify-between px-6 z-40 ml-64 bg-white/80 backdrop-blur-md h-16 border-b border-slate-200 shadow-sm"
+      class="sticky top-0 w-full flex items-center justify-between px-6 z-40 ml-64 bg-white/80 dark:bg-slate-900 backdrop-blur-md h-16 border-b border-slate-200 dark:border-slate-700 shadow-sm"
       style="width: calc(100% - 16rem)"
     >
       <div class="flex items-center gap-4">
-        <h2 class="font-h2 text-h2 text-slate-900">Transactions</h2>
+        <h2 class="font-h2 text-h2 text-slate-900 dark:text-white">
+          Transactions
+        </h2>
       </div>
       <div class="flex items-center gap-6">
         <div class="flex items-center gap-4 text-slate-500">
-          <button class="hover:text-blue-600 transition-colors">
-            <span class="material-symbols-outlined">dark_mode</span>
+          <button
+            onclick="toggleDarkMode()"
+            class="text-slate-400 hover:text-blue-600 transition-colors"
+          >
+            <span class="material-symbols-outlined" id="theme-icon"
+              >dark_mode</span
+            >
           </button>
+
           <button
             onclick="logout()"
-            class="hover:text-blue-600 transition-colors"
+            class="text-slate-400 hover:text-blue-600 transition-colors"
           >
             <span class="material-symbols-outlined">logout</span>
           </button>
         </div>
-        <div class="h-8 w-[1px] bg-slate-200"></div>
-        <p id="current-date" class="text-sm font-medium text-slate-600"></p>
+        <div class="h-8 w-[1px] bg-slate-200 dark:bg-slate-700"></div>
+        <p
+          id="current-date"
+          class="text-sm font-medium text-slate-600 dark:text-slate-400"
+        ></p>
       </div>
     </header>
 
     <!-- Main Content -->
-    <main class="ml-64 p-8 min-h-screen bg-surface">
+    <main class="ml-64 p-8 min-h-screen bg-surface dark:bg-slate-950">
       <div class="max-w-7xl mx-auto space-y-8">
         <!-- Filter Bar -->
         <div
           class="flex flex-col lg:flex-row gap-4 items-start lg:items-center justify-between"
         >
           <div class="flex flex-col sm:flex-row gap-4 w-full lg:w-auto">
-            <!-- Search -->
             <div class="relative flex-1 min-w-[280px]">
               <span
                 class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"
@@ -246,16 +275,15 @@
               >
               <input
                 id="search-input"
-                class="w-full pl-11 pr-4 py-3 bg-white border border-slate-200 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                class="w-full pl-11 pr-4 py-3 bg-white dark:bg-slate-800 border border-slate-200 dark:text-white dark:border-slate-700 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-primary"
                 placeholder="Search transactions..."
                 type="text"
               />
             </div>
 
-            <!-- Category Filter -->
             <select
               id="category-filter"
-              class="bg-white border border-slate-200 rounded-2xl px-5 py-3 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary"
+              class="bg-white dark:bg-slate-800 border border-slate-200 dark:text-white dark:border-slate-700 rounded-2xl px-6 py-3 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary"
             >
               <option value="">All Categories</option>
             </select>
@@ -271,11 +299,13 @@
         </div>
 
         <!-- Transactions Table -->
-        <div class="bg-white rounded-3xl elevation-1 overflow-hidden">
+        <div
+          class="bg-white dark:bg-slate-800 rounded-3xl elevation-1 overflow-hidden"
+        >
           <div class="overflow-x-auto">
             <table class="w-full text-left">
               <thead
-                class="bg-surface-container-low text-slate-500 font-label-sm uppercase tracking-wider"
+                class="bg-surface-container-low dark:bg-slate-700 text-slate-500 dark:text-slate-400 font-label-sm uppercase tracking-wider"
               >
                 <tr>
                   <th class="px-6 py-5">Description</th>
@@ -287,11 +317,13 @@
               </thead>
               <tbody
                 id="transactions-body"
-                class="divide-y divide-slate-100"
+                class="divide-y divide-slate-100 dark:divide-slate-700"
               ></tbody>
             </table>
           </div>
         </div>
+
+        <!-- Pagination -->
         <div
           id="pagination"
           class="flex justify-center items-center gap-2 mt-6"
@@ -304,60 +336,66 @@
       id="quick-add-modal"
       class="hidden fixed inset-0 bg-black/60 flex items-center justify-center z-50"
     >
-      <div class="bg-white rounded-3xl p-8 w-full max-w-md">
-        <h3 class="text-2xl font-semibold mb-6">Add New Transaction</h3>
+      <div class="bg-white dark:bg-slate-800 rounded-3xl p-8 w-full max-w-md">
+        <h3 class="text-2xl font-semibold mb-6 text-slate-900 dark:text-white">
+          Add New Transaction
+        </h3>
         <form id="modal-form" class="space-y-5">
           <div>
-            <label class="block text-sm font-medium text-slate-600 mb-1"
+            <label
+              class="block text-sm font-medium text-slate-600 dark:text-slate-400 mb-1"
               >Description</label
             >
             <input
               id="modal-desc"
-              class="w-full px-4 py-3 border border-slate-300 rounded-2xl focus:outline-none focus:border-primary"
+              class="w-full px-4 py-3 border border-slate-300 dark:border-slate-600 rounded-2xl focus:outline-none focus:border-primary bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
               placeholder="What was this for?"
               required
             />
           </div>
           <div class="grid grid-cols-2 gap-4">
             <div>
-              <label class="block text-sm font-medium text-slate-600 mb-1"
+              <label
+                class="block text-sm font-medium text-slate-600 dark:text-slate-400 mb-1"
                 >Amount</label
               >
               <input
                 id="modal-amount"
                 type="number"
                 step="0.01"
-                class="w-full px-4 py-3 border border-slate-300 rounded-2xl focus:outline-none focus:border-primary"
+                class="w-full px-4 py-3 border border-slate-300 dark:border-slate-600 rounded-2xl focus:outline-none focus:border-primary bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
                 placeholder="0.00"
                 required
               />
             </div>
             <div>
-              <label class="block text-sm font-medium text-slate-600 mb-1"
+              <label
+                class="block text-sm font-medium text-slate-600 dark:text-slate-400 mb-1"
                 >Date</label
               >
               <input
                 id="modal-date"
                 type="date"
-                class="w-full px-4 py-3 border border-slate-300 rounded-2xl focus:outline-none focus:border-primary"
+                class="w-full px-4 py-3 border border-slate-300 dark:border-slate-600 rounded-2xl focus:outline-none focus:border-primary bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
                 required
               />
             </div>
           </div>
           <div>
-            <label class="block text-sm font-medium text-slate-600 mb-1"
+            <label
+              class="block text-sm font-medium text-slate-600 dark:text-slate-400 mb-1"
               >Category</label
             >
             <select
               id="modal-category"
-              class="w-full px-4 py-3 border border-slate-300 rounded-2xl focus:outline-none focus:border-primary"
+              class="w-full px-4 py-3 border border-slate-300 dark:border-slate-600 rounded-2xl focus:outline-none focus:border-primary bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
             ></select>
           </div>
           <div class="flex gap-3 pt-4">
             <button
               type="button"
               onclick="hideQuickAddModal()"
-              class="flex-1 py-3 border border-slate-300 rounded-2xl font-medium"
+              class="flex-1 py-3 border border-slate-300 dark:border-slate-600 rounded-2xl font-medium text-slate-700 dark:text-slate-300"
             >
               Cancel
             </button>
@@ -389,16 +427,12 @@
 
       let currentUser = null;
       let transactions = [];
-
-      // 🔥 Pagination state
       let currentPage = 1;
       const rowsPerPage = 10;
       let filteredData = [];
 
-      // ==================== AUTH ====================
       function showMainApp() {
         document.getElementById("display-username").textContent = currentUser;
-
         document.getElementById("current-date").textContent =
           new Date().toLocaleDateString("en-US", {
             year: "numeric",
@@ -408,7 +442,6 @@
 
         loadData();
         populateAllCategories();
-
         filteredData = [...transactions];
         renderTransactions();
       }
@@ -426,19 +459,9 @@
         );
       }
 
-      function logout() {
-        if (confirm("Are you sure you want to logout?")) {
-          localStorage.removeItem("fintrack_current_user");
-          location.reload();
-        }
-      }
-
-      // ==================== CATEGORY ====================
       function populateAllCategories() {
         const select = document.getElementById("category-filter");
-
         select.innerHTML = `<option value="">All Categories</option>`;
-
         categories.forEach((cat) => {
           const opt = document.createElement("option");
           opt.value = cat;
@@ -447,50 +470,52 @@
         });
       }
 
-      // ==================== RENDER ====================
+      function populateModalCategories() {
+        const select = document.getElementById("modal-category");
+        select.innerHTML = `<option value="">Select Category</option>`;
+        categories.forEach((cat) => {
+          const opt = document.createElement("option");
+          opt.value = cat;
+          opt.textContent = cat;
+          select.appendChild(opt);
+        });
+      }
+
       function renderTransactions() {
         const tbody = document.getElementById("transactions-body");
         tbody.innerHTML = "";
 
-        if (filteredData.length === 0) {
-          tbody.innerHTML = `<tr><td colspan="5" class="px-6 py-12 text-center text-slate-400">No transactions found</td></tr>`;
-          document.getElementById("pagination").innerHTML = "";
-          return;
-        }
-
-        // 🔥 Pagination slice
         const start = (currentPage - 1) * rowsPerPage;
         const paginated = filteredData.slice(start, start + rowsPerPage);
 
+        if (paginated.length === 0) {
+          tbody.innerHTML = `<tr><td colspan="5" class="px-6 py-12 text-center text-slate-400 dark:text-slate-500">No transactions found</td></tr>`;
+          renderPagination();
+          return;
+        }
+
         paginated.forEach((tx) => {
           const isIncome = tx.category === "Income";
-
           const row = document.createElement("tr");
-          row.className = "hover:bg-slate-50";
-
+          row.className =
+            "hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors";
           row.innerHTML = `
-        <td class="px-6 py-5 font-medium">${tx.description}</td>
-        <td class="px-6 py-5">
-          <span class="px-4 py-1 text-xs rounded-full ${
-            isIncome
-              ? "bg-green-100 text-green-700"
-              : "bg-orange-100 text-orange-700"
-          }">${tx.category}</span>
-        </td>
-        <td class="px-6 py-5 text-slate-500">${tx.date}</td>
-        <td class="px-6 py-5 font-bold text-right ${
-          isIncome ? "text-secondary" : "text-tertiary"
-        }">
-          ${isIncome ? "+" : "-"}$${Math.abs(tx.amount).toFixed(2)}
-        </td>
-        <td class="px-6 py-5 text-center">
-          <button onclick="deleteTransaction(${tx.id})"
-            class="text-slate-400 hover:text-red-600">
-            <span class="material-symbols-outlined">delete</span>
-          </button>
-        </td>
-      `;
-
+          <td class="px-6 py-5 font-medium text-on-surface dark:text-white">
+            ${tx.description}
+          </td>
+          <td class="px-6 py-5">
+            <span class="px-4 py-1 text-xs rounded-full ${isIncome ? "bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300" : "bg-orange-100 dark:bg-orange-900 text-orange-700 dark:text-orange-300"}">${tx.category}</span>
+          </td>
+          <td class="px-6 py-5 text-slate-500 dark:text-slate-400">${tx.date}</td>
+          <td class="px-6 py-5 font-bold text-right ${isIncome ? "text-secondary" : "text-tertiary"}">
+            ${isIncome ? "+" : "-"}$${Math.abs(tx.amount).toFixed(2)}
+          </td>
+          <td class="px-6 py-5 text-center">
+            <button onclick="deleteTransaction(${tx.id})" class="text-slate-400 hover:text-red-600">
+              <span class="material-symbols-outlined">delete</span>
+            </button>
+          </td>
+        `;
           tbody.appendChild(row);
         });
 
@@ -505,20 +530,12 @@
 
         for (let i = 1; i <= totalPages; i++) {
           const btn = document.createElement("button");
-
           btn.textContent = i;
-
-          btn.className =
-            "px-3 py-1 border rounded " +
-            (i === currentPage
-              ? "bg-primary text-white"
-              : "bg-white hover:bg-slate-100");
-
+          btn.className = `px-4 py-2 mx-1 rounded-xl text-sm font-medium transition-all ${i === currentPage ? "bg-primary text-white" : "bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-600"}`;
           btn.onclick = () => {
             currentPage = i;
             renderTransactions();
           };
-
           container.appendChild(btn);
         }
       }
@@ -527,29 +544,27 @@
         if (confirm("Delete this transaction?")) {
           transactions = transactions.filter((t) => t.id !== id);
           saveData();
-          filterTransactions(); // 🔥 keep filters applied
+          filteredData = transactions;
+          currentPage = 1;
+          renderTransactions();
         }
       }
 
-      // ==================== SEARCH ====================
       function filterTransactions() {
         const searchTerm = document
           .getElementById("search-input")
           .value.toLowerCase()
           .trim();
-
         const categoryFilter = document.getElementById("category-filter").value;
 
         filteredData = transactions.filter((tx) => {
           const matchesSearch =
+            !searchTerm ||
             tx.description.toLowerCase().includes(searchTerm) ||
-            tx.category.toLowerCase().includes(searchTerm) ||
-            tx.date.toLowerCase().includes(searchTerm) ||
-            tx.amount.toString().includes(searchTerm);
+            tx.category.toLowerCase().includes(searchTerm);
 
           const matchesCategory =
-            categoryFilter === "" || tx.category === categoryFilter;
-
+            !categoryFilter || tx.category === categoryFilter;
           return matchesSearch && matchesCategory;
         });
 
@@ -557,10 +572,10 @@
         renderTransactions();
       }
 
-      // ==================== MODAL ====================
       function showQuickAddModal() {
         document.getElementById("quick-add-modal").classList.remove("hidden");
         document.getElementById("modal-date").valueAsDate = new Date();
+        populateModalCategories();
       }
 
       function hideQuickAddModal() {
@@ -572,7 +587,6 @@
         .getElementById("modal-form")
         .addEventListener("submit", function (e) {
           e.preventDefault();
-
           const desc = document.getElementById("modal-desc").value.trim();
           const amount = parseFloat(
             document.getElementById("modal-amount").value,
@@ -580,43 +594,64 @@
           const date = document.getElementById("modal-date").value;
           const category = document.getElementById("modal-category").value;
 
-          if (!desc || !amount || !date || !category) {
-            alert("Please fill all fields");
-            return;
-          }
+          if (!desc || !amount || !date || !category)
+            return alert("Please fill all fields");
 
           transactions.unshift({
             id: Date.now(),
             description: desc,
-            amount,
-            date,
-            category,
+            amount: amount,
+            date: date,
+            category: category,
           });
 
           saveData();
-          filterTransactions(); // 🔥 keep filters + pagination working
+          filteredData = transactions;
+          currentPage = 1;
+          renderTransactions();
           hideQuickAddModal();
         });
 
-      // ==================== EVENTS ====================
-      document
-        .getElementById("search-input")
-        .addEventListener("input", filterTransactions);
+      function toggleDarkMode() {
+        const html = document.documentElement;
+        html.classList.toggle("dark");
+        localStorage.setItem(
+          "fintrack_theme",
+          html.classList.contains("dark") ? "dark" : "light",
+        );
+        document.getElementById("theme-icon").textContent =
+          html.classList.contains("dark") ? "light_mode" : "dark_mode";
+      }
 
-      document
-        .getElementById("category-filter")
-        .addEventListener("change", filterTransactions);
+      function logout() {
+        if (confirm("Are you sure you want to logout?")) {
+          localStorage.removeItem("fintrack_current_user");
+          location.reload();
+        }
+      }
 
-      // ==================== INIT ====================
+      // Initialize
       window.onload = function () {
         const savedUser = localStorage.getItem("fintrack_current_user");
-
         if (savedUser) {
           currentUser = savedUser;
           showMainApp();
         } else {
           window.location.href = "index.html";
         }
+
+        const savedTheme = localStorage.getItem("fintrack_theme");
+        if (savedTheme === "dark") {
+          document.documentElement.classList.add("dark");
+          document.getElementById("theme-icon").textContent = "light_mode";
+        }
+
+        document
+          .getElementById("search-input")
+          .addEventListener("input", filterTransactions);
+        document
+          .getElementById("category-filter")
+          .addEventListener("change", filterTransactions);
       };
     </script>
   </body>

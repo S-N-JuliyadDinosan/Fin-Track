@@ -4,6 +4,17 @@
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>FinTrack - Personal Wealth</title>
+    <script>
+      (function () {
+        const theme = localStorage.getItem("fintrack_theme");
+
+        if (theme === "dark") {
+          document.documentElement.classList.add("dark");
+        } else {
+          document.documentElement.classList.remove("dark");
+        }
+      })();
+    </script>
 
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link
@@ -75,18 +86,6 @@
               xl: "0.75rem",
               full: "9999px",
             },
-            spacing: {
-              "2xl": "48px",
-              base: "8px",
-              sm: "8px",
-              xs: "4px",
-              "container-max": "1280px",
-              lg: "24px",
-              md: "16px",
-              "3xl": "64px",
-              gutter: "24px",
-              xl: "32px",
-            },
             fontFamily: {
               h2: ["Manrope"],
               "label-sm": ["Inter"],
@@ -143,7 +142,6 @@
       .elevation-1 {
         box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.05);
       }
-      /* Scrollable budget list */
       #budget-list {
         max-height: 340px;
         overflow-y: auto;
@@ -157,6 +155,36 @@
         background-color: #cbd5e1;
         border-radius: 20px;
       }
+
+      /* Dark Mode Styles */
+      .dark body {
+        background-color: #0f172a;
+      }
+      .dark .bg-white,
+      .dark .elevation-1,
+      .dark .bg-surface-container-low {
+        background-color: #1e2937;
+      }
+      .dark .text-slate-900,
+      .dark .text-on-surface {
+        color: #f1f5f9;
+      }
+      .dark .text-slate-500,
+      .dark .text-slate-600 {
+        color: #94a3b8;
+      }
+      .dark input,
+      .dark select {
+        background-color: #334155;
+        border-color: #475569;
+        color: #f1f5f9;
+      }
+      .dark .border-slate-200 {
+        border-color: #475569;
+      }
+      .dark .bg-surface {
+        background-color: #0f172a;
+      }
     </style>
   </head>
   <body class="bg-background font-body-md text-on-surface antialiased">
@@ -165,7 +193,9 @@
       id="auth-screen"
       class="min-h-screen flex items-center justify-center bg-surface px-4"
     >
-      <div class="max-w-md w-full bg-white rounded-3xl elevation-1 p-10">
+      <div
+        class="max-w-md w-full bg-white dark:bg-slate-800 rounded-3xl elevation-1 p-10"
+      >
         <div class="text-center mb-8">
           <div
             class="w-16 h-16 bg-primary rounded-2xl mx-auto flex items-center justify-center text-white mb-4"
@@ -174,34 +204,43 @@
               >account_balance_wallet</span
             >
           </div>
-          <h1 class="text-3xl font-black text-slate-900">FinTrack</h1>
-          <p class="text-slate-500 mt-1">Personal Wealth Manager</p>
+          <h1 class="text-3xl font-black text-slate-900 dark:text-white">
+            FinTrack
+          </h1>
+          <p class="text-slate-500 dark:text-slate-400 mt-1">
+            Personal Wealth Manager
+          </p>
         </div>
 
-        <h2 id="auth-title" class="text-2xl font-semibold text-center mb-6">
+        <h2
+          id="auth-title"
+          class="text-2xl font-semibold text-center mb-6 text-slate-900 dark:text-white"
+        >
           Create Account
         </h2>
 
         <div class="space-y-5">
           <div>
-            <label class="block text-sm font-medium text-slate-600 mb-1"
+            <label
+              class="block text-sm font-medium text-slate-600 dark:text-slate-400 mb-1"
               >Username</label
             >
             <input
               id="username"
               type="text"
-              class="w-full px-4 py-3 border border-slate-300 rounded-2xl focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
+              class="w-full px-4 py-3 border border-slate-300 dark:border-slate-600 rounded-2xl focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
               placeholder="Choose a username"
             />
           </div>
           <div>
-            <label class="block text-sm font-medium text-slate-600 mb-1"
+            <label
+              class="block text-sm font-medium text-slate-600 dark:text-slate-400 mb-1"
               >Password</label
             >
             <input
               id="password"
               type="password"
-              class="w-full px-4 py-3 border border-slate-300 rounded-2xl focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
+              class="w-full px-4 py-3 border border-slate-300 dark:border-slate-600 rounded-2xl focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
               placeholder="Create a password"
             />
           </div>
@@ -213,7 +252,10 @@
             <span id="auth-btn-text">Create Account</span>
           </button>
 
-          <p id="toggle-text" class="text-center text-sm text-slate-500 mt-6">
+          <p
+            id="toggle-text"
+            class="text-center text-sm text-slate-500 dark:text-slate-400 mt-6"
+          >
             Already have an account?
             <span
               onclick="toggleAuthMode()"
@@ -229,7 +271,7 @@
     <div id="main-app" class="hidden">
       <!-- SideNavBar -->
       <aside
-        class="fixed left-0 top-0 flex flex-col h-full z-50 bg-white border-r border-slate-200 h-screen w-64 font-manrope antialiased transition-all duration-200 ease-in-out"
+        class="fixed left-0 top-0 flex flex-col h-full z-50 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-700 h-screen w-64 font-manrope antialiased transition-all duration-200 ease-in-out"
       >
         <div class="p-6 flex items-center gap-3">
           <div
@@ -238,9 +280,11 @@
             <span class="material-symbols-outlined">payments</span>
           </div>
           <div>
-            <h1 class="text-xl font-black text-slate-900">FinTrack</h1>
+            <h1 class="text-xl font-black text-slate-900 dark:text-white">
+              FinTrack
+            </h1>
             <p
-              class="text-xs text-slate-500 uppercase tracking-wider font-bold"
+              class="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider font-bold"
             >
               Personal Wealth
             </p>
@@ -249,28 +293,28 @@
 
         <nav class="flex-1 mt-6 px-4 space-y-2">
           <a
-            class="flex items-center gap-3 px-4 py-3 bg-blue-50 text-blue-600 font-semibold border-r-4 border-blue-600"
+            class="flex items-center gap-3 px-4 py-3 bg-blue-50 dark:bg-blue-950 text-blue-600 font-semibold border-r-4 border-blue-600"
             href="#"
           >
             <span class="material-symbols-outlined">dashboard</span>
             <span class="font-label-md">Dashboard</span>
           </a>
           <a
-            class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50"
+            class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800"
             href="transactions.html"
           >
             <span class="material-symbols-outlined">receipt_long</span>
             <span class="font-label-md">Transactions</span>
           </a>
           <a
-            class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50"
+            class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800"
             href="analytics.html"
           >
             <span class="material-symbols-outlined">analytics</span>
             <span class="font-label-md">Analytics</span>
           </a>
           <a
-            class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50"
+            class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800"
             href="budget.html"
           >
             <span class="material-symbols-outlined"
@@ -279,7 +323,7 @@
             <span class="font-label-md">Budget</span>
           </a>
           <a
-            class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50"
+            class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800"
             href="settings.html"
           >
             <span class="material-symbols-outlined">settings</span>
@@ -287,9 +331,11 @@
           </a>
         </nav>
 
-        <div class="p-4 mt-auto border-t border-slate-100">
+        <div
+          class="p-4 mt-auto border-t border-slate-100 dark:border-slate-700"
+        >
           <div
-            class="flex items-center gap-3 p-2 bg-surface-container-low rounded-xl"
+            class="flex items-center gap-3 p-2 bg-surface-container-low dark:bg-slate-800 rounded-xl"
           >
             <img
               alt="User Profile"
@@ -298,12 +344,16 @@
             />
             <div class="overflow-hidden">
               <p
-                class="font-label-md text-on-surface truncate"
+                class="font-label-md text-on-surface dark:text-white truncate"
                 id="display-username"
               >
                 Alex Sterling
               </p>
-              <p class="text-[10px] text-slate-500 truncate">Premium Member</p>
+              <p
+                class="text-[10px] text-slate-500 dark:text-slate-400 truncate"
+              >
+                Premium Member
+              </p>
             </div>
           </div>
         </div>
@@ -311,25 +361,24 @@
 
       <!-- TopNavBar -->
       <header
-        class="sticky top-0 w-full flex items-center justify-between px-6 z-40 ml-64 bg-white/80 backdrop-blur-md h-16 border-b border-slate-200 shadow-sm"
+        class="sticky top-0 w-full flex items-center justify-between px-6 z-40 ml-64 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md h-16 border-b border-slate-200 dark:border-slate-700 shadow-sm"
         style="width: calc(100% - 16rem)"
       >
         <div class="flex items-center gap-4">
-          <h2 class="font-h2 text-h2 text-slate-900">Financial Overview</h2>
+          <h2 class="font-h2 text-h2 text-slate-900 dark:text-white">
+            Financial Overview
+          </h2>
         </div>
         <div class="flex items-center gap-6">
           <div class="flex items-center gap-4 text-slate-500">
-            <button class="hover:text-blue-600 transition-colors">
-              <span class="material-symbols-outlined">dark_mode</span>
+            <button
+              onclick="toggleDarkMode()"
+              class="hover:text-blue-600 transition-colors"
+            >
+              <span class="material-symbols-outlined" id="theme-icon"
+                >dark_mode</span
+              >
             </button>
-            <div class="relative">
-              <button class="hover:text-blue-600 transition-colors">
-                <span class="material-symbols-outlined">notifications</span>
-              </button>
-              <span
-                class="absolute -top-1 -right-1 w-2 h-2 bg-error rounded-full border-2 border-white"
-              ></span>
-            </div>
             <button
               onclick="logout()"
               class="hover:text-blue-600 transition-colors"
@@ -337,13 +386,16 @@
               <span class="material-symbols-outlined">logout</span>
             </button>
           </div>
-          <div class="h-8 w-[1px] bg-slate-200"></div>
-          <p id="current-date" class="text-sm font-medium text-slate-600"></p>
+          <div class="h-8 w-[1px] bg-slate-200 dark:bg-slate-700"></div>
+          <p
+            id="current-date"
+            class="text-sm font-medium text-slate-600 dark:text-slate-400"
+          ></p>
         </div>
       </header>
 
       <!-- Main Content -->
-      <main class="ml-64 p-8 min-h-screen bg-surface">
+      <main class="ml-64 p-8 min-h-screen bg-surface dark:bg-slate-950">
         <div class="max-w-7xl mx-auto space-y-8">
           <!-- Summary Cards -->
           <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -373,11 +425,11 @@
             </div>
 
             <div
-              class="bg-white p-6 rounded-xl elevation-1 border-l-4 border-secondary flex items-center justify-between"
+              class="bg-white dark:bg-slate-800 p-6 rounded-xl elevation-1 border-l-4 border-secondary flex items-center justify-between"
             >
               <div>
                 <p
-                  class="text-slate-500 font-label-sm uppercase tracking-wider"
+                  class="text-slate-500 dark:text-slate-400 font-label-sm uppercase tracking-wider"
                 >
                   Total Income
                 </p>
@@ -401,11 +453,11 @@
             </div>
 
             <div
-              class="bg-white p-6 rounded-xl elevation-1 border-l-4 border-tertiary flex items-center justify-between"
+              class="bg-white dark:bg-slate-800 p-6 rounded-xl elevation-1 border-l-4 border-tertiary flex items-center justify-between"
             >
               <div>
                 <p
-                  class="text-slate-500 font-label-sm uppercase tracking-wider"
+                  class="text-slate-500 dark:text-slate-400 font-label-sm uppercase tracking-wider"
                 >
                   Total Expenses
                 </p>
@@ -429,63 +481,69 @@
             </div>
           </div>
 
-          <!-- Improved Bento Grid -->
+          <!-- Bento Grid -->
           <div class="bento-grid">
             <!-- Quick Add Form -->
             <section
-              class="col-span-12 lg:col-span-4 bg-white p-6 rounded-xl elevation-1"
+              class="col-span-12 lg:col-span-4 bg-white dark:bg-slate-800 p-6 rounded-xl elevation-1"
             >
               <div class="flex items-center justify-between mb-6">
-                <h4 class="font-h1 text-h1 text-on-surface">Quick Add</h4>
+                <h4 class="font-h1 text-h1 text-on-surface dark:text-white">
+                  Quick Add
+                </h4>
                 <span class="material-symbols-outlined text-primary"
                   >add_circle</span
                 >
               </div>
               <form id="quick-add-form" class="space-y-4">
                 <div>
-                  <label class="block font-label-sm text-slate-500 mb-1"
+                  <label
+                    class="block font-label-sm text-slate-500 dark:text-slate-400 mb-1"
                     >Description</label
                   >
                   <input
                     id="desc"
-                    class="w-full border-slate-200 rounded-lg px-4 py-2 border"
+                    class="w-full border-slate-200 dark:border-slate-600 rounded-lg px-4 py-2 border bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
                     placeholder="Rent, Salary..."
                     required
                   />
                 </div>
                 <div class="grid grid-cols-2 gap-4">
                   <div>
-                    <label class="block font-label-sm text-slate-500 mb-1"
+                    <label
+                      class="block font-label-sm text-slate-500 dark:text-slate-400 mb-1"
                       >Amount</label
                     >
                     <input
                       id="amount"
                       type="number"
                       step="0.01"
-                      class="w-full border-slate-200 rounded-lg px-4 py-2 border"
+                      class="w-full border-slate-200 dark:border-slate-600 rounded-lg px-4 py-2 border bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
                       placeholder="0.00"
                       required
                     />
                   </div>
                   <div>
-                    <label class="block font-label-sm text-slate-500 mb-1"
+                    <label
+                      class="block font-label-sm text-slate-500 dark:text-slate-400 mb-1"
                       >Date</label
                     >
                     <input
                       id="date"
                       type="date"
-                      class="w-full border-slate-200 rounded-lg px-4 py-2 border"
+                      class="w-full border-slate-200 dark:border-slate-600 rounded-lg px-4 py-2 border bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
                       required
                     />
                   </div>
                 </div>
                 <div>
-                  <label class="block font-label-sm text-slate-500 mb-1"
+                  <label
+                    class="block font-label-sm text-slate-500 dark:text-slate-400 mb-1"
                     >Category</label
                   >
                   <select
                     id="category"
-                    class="w-full border-slate-200 rounded-lg px-4 py-2 border"
+                    class="w-full border-slate-200 dark:border-slate-600 rounded-lg px-4 py-2 border bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
                   ></select>
                 </div>
                 <button
@@ -497,48 +555,49 @@
               </form>
             </section>
 
-            <!-- Right Column: Budget Section with Reduced Height -->
+            <!-- Budget Section -->
             <div class="col-span-12 lg:col-span-8">
-              <div class="bg-white p-6 rounded-xl elevation-1">
+              <div
+                class="bg-white dark:bg-slate-800 p-6 rounded-xl elevation-1"
+              >
                 <div class="flex items-center justify-between mb-5">
-                  <h4 class="font-h2 text-h2 text-on-surface">
+                  <h4 class="font-h2 text-h2 text-on-surface dark:text-white">
                     Monthly Budget
                   </h4>
-                  <span class="text-xs text-slate-500 font-medium"
+                  <span
+                    class="text-xs text-slate-500 dark:text-slate-400 font-medium"
                     >Scroll for more ↓</span
                   >
                 </div>
-
                 <div
                   id="budget-list"
-                  class="space-y-6 max-h-[340px] overflow-y-auto pr-3 custom-scroll"
+                  class="space-y-6 max-h-[340px] overflow-y-auto pr-3"
                 >
-                  <!-- Budget items populated by JS -->
+                  <!-- Populated by JS -->
                 </div>
               </div>
             </div>
 
             <!-- Recent Transactions -->
             <section
-              class="col-span-12 bg-white rounded-xl elevation-1 overflow-hidden"
+              class="col-span-12 bg-white dark:bg-slate-800 rounded-xl elevation-1 overflow-hidden"
             >
               <div
-                class="p-6 border-b border-slate-100 flex items-center justify-between"
+                class="p-6 border-b border-slate-100 dark:border-slate-700 flex items-center justify-between"
               >
-                <h4 class="font-h1 text-h1 text-on-surface">
+                <h4 class="font-h1 text-h1 text-on-surface dark:text-white">
                   Recent Transactions
                 </h4>
                 <a
                   href="transactions.html"
                   class="text-primary font-label-md hover:underline"
+                  >View All</a
                 >
-                  View All
-                </a>
               </div>
               <div class="overflow-x-auto">
                 <table class="w-full text-left">
                   <thead
-                    class="bg-surface-container-low text-slate-500 font-label-sm uppercase tracking-wider"
+                    class="bg-surface-container-low dark:bg-slate-700 text-slate-500 dark:text-slate-400 font-label-sm uppercase tracking-wider"
                   >
                     <tr>
                       <th class="px-6 py-4">Description</th>
@@ -550,7 +609,7 @@
                   </thead>
                   <tbody
                     id="transactions-body"
-                    class="divide-y divide-slate-100"
+                    class="divide-y divide-slate-100 dark:divide-slate-700"
                   ></tbody>
                 </table>
               </div>
@@ -579,7 +638,6 @@
       let transactions = [];
       let budgets = {};
 
-      // ==================== AUTH SYSTEM ====================
       function toggleAuthMode() {
         const isLogin =
           document.getElementById("auth-title").textContent === "Welcome Back";
@@ -594,6 +652,16 @@
         toggleText.innerHTML = isLogin
           ? `Already have an account? <span onclick="toggleAuthMode()" class="text-primary cursor-pointer hover:underline">Login</span>`
           : `Don't have an account? <span onclick="toggleAuthMode()" class="text-primary cursor-pointer hover:underline">Create one</span>`;
+      }
+
+      function toggleDarkMode() {
+        const html = document.documentElement;
+        html.classList.toggle("dark");
+        const isDark = html.classList.contains("dark");
+        localStorage.setItem("fintrack_theme", isDark ? "dark" : "light");
+        document.getElementById("theme-icon").textContent = isDark
+          ? "light_mode"
+          : "dark_mode";
       }
 
       function handleAuth() {
@@ -661,6 +729,14 @@
       function populateCategories() {
         const select = document.getElementById("category");
         select.innerHTML = "";
+
+        const defaultOpt = document.createElement("option");
+        defaultOpt.value = "";
+        defaultOpt.textContent = "Select Category";
+        defaultOpt.disabled = true;
+        defaultOpt.selected = true;
+        select.appendChild(defaultOpt);
+
         categories.forEach((cat) => {
           const opt = document.createElement("option");
           opt.value = cat;
@@ -669,7 +745,6 @@
         });
       }
 
-      // Quick Add Form
       document
         .getElementById("quick-add-form")
         .addEventListener("submit", function (e) {
@@ -731,11 +806,12 @@
         transactions.slice(0, 5).forEach((tx) => {
           const isIncome = tx.category === "Income";
           const row = document.createElement("tr");
-          row.className = "hover:bg-slate-50 transition-colors";
+          row.className =
+            "hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors";
           row.innerHTML = `
           <td class="px-6 py-4">${tx.description}</td>
-          <td class="px-6 py-4"><span class="px-3 py-1 text-xs rounded-full ${isIncome ? "bg-green-100 text-green-700" : "bg-orange-100 text-orange-700"}">${tx.category}</span></td>
-          <td class="px-6 py-4 text-slate-500">${tx.date}</td>
+          <td class="px-6 py-4"><span class="px-3 py-1 text-xs rounded-full ${isIncome ? "bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300" : "bg-orange-100 dark:bg-orange-900 text-orange-700 dark:text-orange-300"}">${tx.category}</span></td>
+          <td class="px-6 py-4 text-slate-500 dark:text-slate-400">${tx.date}</td>
           <td class="px-6 py-4 font-bold text-right ${isIncome ? "text-secondary" : "text-tertiary"}">
             ${isIncome ? "+" : "-"}$${Math.abs(tx.amount).toFixed(2)}
           </td>
@@ -757,14 +833,12 @@
         }
       }
 
-      // ==================== BUDGET SECTION - Show only 3, scroll rest ====================
       function renderBudgetSection() {
         const container = document.getElementById("budget-list");
         container.innerHTML = "";
 
-        categories.forEach((cat, index) => {
+        categories.forEach((cat) => {
           if (cat === "Income") return;
-
           const spent = transactions
             .filter((t) => t.category === cat)
             .reduce((sum, t) => sum + t.amount, 0);
@@ -775,17 +849,14 @@
           const div = document.createElement("div");
           div.innerHTML = `
           <div class="flex justify-between items-center mb-2">
-            <span class="font-medium">${cat}</span>
-            <button onclick="editSingleBudget('${cat}')" 
-                    class="text-xs px-3 py-1 bg-slate-100 hover:bg-slate-200 rounded-lg transition-colors">
-              Edit
-            </button>
+            <span class="font-medium dark:text-white">${cat}</span>
+            <button onclick="editSingleBudget('${cat}')" class="text-xs px-3 py-1 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 rounded-lg transition-colors">Edit</button>
           </div>
-          <div class="flex justify-between text-sm text-slate-500 mb-1">
+          <div class="flex justify-between text-sm text-slate-500 dark:text-slate-400 mb-1">
             <span>Spent: $${spent.toFixed(0)}</span>
             <span>Budget: $${budget}</span>
           </div>
-          <div class="w-full h-2.5 bg-slate-100 rounded-full overflow-hidden">
+          <div class="w-full h-2.5 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
             <div class="h-full ${percent > 85 ? "bg-red-500" : "bg-primary"}" style="width: ${percent}%"></div>
           </div>
         `;
@@ -810,12 +881,17 @@
         }
       }
 
-      // Initialize
       window.onload = function () {
         const savedUser = localStorage.getItem("fintrack_current_user");
         if (savedUser) {
           currentUser = savedUser;
           showMainApp();
+        }
+
+        const savedTheme = localStorage.getItem("fintrack_theme");
+        if (savedTheme === "dark") {
+          document.documentElement.classList.add("dark");
+          document.getElementById("theme-icon").textContent = "light_mode";
         }
       };
     </script>
