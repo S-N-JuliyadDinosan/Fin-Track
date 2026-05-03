@@ -4,11 +4,9 @@
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Analytics & Insights - FinTrack</title>
-
     <script>
       (function () {
         const theme = localStorage.getItem("fintrack_theme");
-
         if (theme === "dark") {
           document.documentElement.classList.add("dark");
         } else {
@@ -16,7 +14,6 @@
         }
       })();
     </script>
-
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link
       href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800;900&amp;family=Inter:wght@400;500;600&amp;display=swap"
@@ -26,7 +23,6 @@
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
       rel="stylesheet"
     />
-
     <script id="tailwind-config">
       tailwind.config = {
         darkMode: "class",
@@ -125,7 +121,6 @@
         },
       };
     </script>
-
     <style>
       .material-symbols-outlined {
         font-variation-settings:
@@ -138,7 +133,6 @@
       .elevation-1 {
         box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.05);
       }
-
       /* Dark Mode Improvements */
       .dark body {
         background-color: #0f172a;
@@ -182,7 +176,6 @@
           </p>
         </div>
       </div>
-
       <nav class="flex-1 mt-6 px-4 space-y-2">
         <a
           class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800"
@@ -220,7 +213,6 @@
           <span class="font-label-md">Settings</span>
         </a>
       </nav>
-
       <div class="p-4 mt-auto border-t border-slate-100 dark:border-slate-700">
         <div
           class="flex items-center gap-3 p-2 bg-surface-container-low dark:bg-slate-800 rounded-xl"
@@ -244,7 +236,6 @@
         </div>
       </div>
     </aside>
-
     <!-- TopNavBar -->
     <header
       class="sticky top-0 w-full flex items-center justify-between px-6 z-40 ml-64 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md h-16 border-b border-slate-200 dark:border-slate-700 shadow-sm"
@@ -279,13 +270,30 @@
         ></p>
       </div>
     </header>
-
     <!-- Main Content -->
     <main class="ml-64 p-8 min-h-screen bg-surface dark:bg-slate-950">
       <div class="max-w-7xl mx-auto space-y-8">
+        <!-- Month & Year Selector -->
+        <div class="flex justify-start">
+          <div class="flex gap-3">
+            <select
+              id="month-select"
+              onchange="updateAnalytics()"
+              class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl pr-10 py-2 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary"
+            ></select>
+            <select
+              id="year-select"
+              onchange="updateAnalytics()"
+              class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl pr-8 py-2 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary"
+            ></select>
+          </div>
+        </div>
+
         <!-- Insight Cards -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div class="bg-white dark:bg-slate-800 p-6 rounded-xl elevation-1">
+          <div
+            class="bg-white dark:bg-slate-800 p-6 rounded-xl elevation-1 hover:scale-[1.02] transition-transform duration-200"
+          >
             <p
               class="text-label-sm text-slate-500 dark:text-slate-400 uppercase tracking-wider"
             >
@@ -301,12 +309,13 @@
               $0.00
             </p>
           </div>
-
-          <div class="bg-white dark:bg-slate-800 p-6 rounded-xl elevation-1">
+          <div
+            class="bg-white dark:bg-slate-800 p-6 rounded-xl elevation-1 hover:scale-[1.02] transition-transform duration-200"
+          >
             <p
               class="text-label-sm text-slate-500 dark:text-slate-400 uppercase tracking-wider"
             >
-              This Month
+              Selected Month
             </p>
             <h3
               id="monthly-total"
@@ -318,8 +327,9 @@
               ↓ vs last month
             </p>
           </div>
-
-          <div class="bg-white dark:bg-slate-800 p-6 rounded-xl elevation-1">
+          <div
+            class="bg-white dark:bg-slate-800 p-6 rounded-xl elevation-1 hover:scale-[1.02] transition-transform duration-200"
+          >
             <p
               class="text-label-sm text-slate-500 dark:text-slate-400 uppercase tracking-wider"
             >
@@ -338,7 +348,7 @@
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
           <!-- Monthly Trend -->
           <div
-            class="lg:col-span-8 bg-white dark:bg-slate-800 p-6 rounded-xl elevation-1"
+            class="lg:col-span-8 bg-white dark:bg-slate-800 p-6 rounded-xl elevation-1 hover:scale-[1.02] transition-transform duration-200"
           >
             <h4 class="font-h2 text-h2 mb-6 dark:text-white">
               Monthly Expense Trend
@@ -348,10 +358,9 @@
               class="h-80 flex items-end gap-3 relative"
             ></div>
           </div>
-
           <!-- Category Breakdown -->
           <div
-            class="lg:col-span-4 bg-white dark:bg-slate-800 p-6 rounded-xl elevation-1"
+            class="lg:col-span-4 bg-white dark:bg-slate-800 p-6 rounded-xl elevation-1 hover:scale-[1.02] transition-transform duration-200"
           >
             <h4 class="font-h2 text-h2 mb-6 dark:text-white">
               Spending by Category
@@ -362,6 +371,12 @@
             ></div>
             <div id="category-legend" class="space-y-3"></div>
           </div>
+        </div>
+
+        <!-- Top 3 Expenses -->
+        <div class="bg-white dark:bg-slate-800 p-6 rounded-xl elevation-1">
+          <h4 class="font-h2 dark:text-white mb-4">Top Expenses</h4>
+          <div id="top-expenses"></div>
         </div>
       </div>
     </main>
@@ -380,9 +395,10 @@
         "Travel",
         "Miscellaneous",
       ];
-
       let currentUser = null;
       let transactions = [];
+      let selectedYear = new Date().getFullYear();
+      let selectedMonth = new Date().getMonth();
 
       function showMainApp() {
         document.getElementById("display-username").textContent = currentUser;
@@ -392,8 +408,8 @@
             month: "short",
             day: "numeric",
           });
-
         loadData();
+        populateMonthYearSelectors();
         updateAnalytics();
       }
 
@@ -403,16 +419,87 @@
         );
       }
 
+      function populateMonthYearSelectors() {
+        const monthSelect = document.getElementById("month-select");
+        const yearSelect = document.getElementById("year-select");
+
+        const months = [
+          "January",
+          "February",
+          "March",
+          "April",
+          "May",
+          "June",
+          "July",
+          "August",
+          "September",
+          "October",
+          "November",
+          "December",
+        ];
+
+        monthSelect.innerHTML = "";
+        for (let i = 0; i < 12; i++) {
+          const opt = document.createElement("option");
+          opt.value = i;
+          opt.textContent = months[i];
+          if (i === selectedMonth) opt.selected = true;
+          monthSelect.appendChild(opt);
+        }
+
+        yearSelect.innerHTML = "";
+        for (let y = selectedYear - 5; y <= selectedYear + 1; y++) {
+          const opt = document.createElement("option");
+          opt.value = y;
+          opt.textContent = y;
+          if (y === selectedYear) opt.selected = true;
+          yearSelect.appendChild(opt);
+        }
+      }
+
       function updateAnalytics() {
-        const expenseByCat = {};
-        transactions.forEach((t) => {
-          if (t.category !== "Income") {
-            expenseByCat[t.category] =
-              (expenseByCat[t.category] || 0) + t.amount;
-          }
+        selectedMonth = parseInt(document.getElementById("month-select").value);
+        selectedYear = parseInt(document.getElementById("year-select").value);
+
+        // Filter transactions for selected month & year
+        const filteredTransactions = transactions.filter((t) => {
+          const date = new Date(t.date);
+          return (
+            date.getFullYear() === selectedYear &&
+            date.getMonth() === selectedMonth
+          );
         });
 
+        const thisMonthTransactions = filteredTransactions.filter(
+          (t) => t.category !== "Income",
+        );
+        const thisMonthTotal = thisMonthTransactions.reduce(
+          (sum, t) => sum + t.amount,
+          0,
+        );
+
+        // Last Month (for comparison)
+        const lastMonthDate = new Date(selectedYear, selectedMonth - 1, 1);
+        const lastMonthTransactions = transactions.filter((t) => {
+          const date = new Date(t.date);
+          return (
+            t.category !== "Income" &&
+            date.getFullYear() === lastMonthDate.getFullYear() &&
+            date.getMonth() === lastMonthDate.getMonth()
+          );
+        });
+        const lastMonthTotal = lastMonthTransactions.reduce(
+          (sum, t) => sum + t.amount,
+          0,
+        );
+
+        // Top Category
+        const expenseByCat = {};
+        thisMonthTransactions.forEach((t) => {
+          expenseByCat[t.category] = (expenseByCat[t.category] || 0) + t.amount;
+        });
         const sorted = Object.entries(expenseByCat).sort((a, b) => b[1] - a[1]);
+
         document.getElementById("top-category").textContent = sorted[0]
           ? sorted[0][0]
           : "No Data";
@@ -420,17 +507,44 @@
           ? "$" + sorted[0][1].toFixed(2)
           : "$0.00";
 
-        const totalExpenses = Object.values(expenseByCat).reduce(
-          (a, b) => a + b,
-          0,
-        );
         document.getElementById("monthly-total").textContent =
-          "$" + totalExpenses.toFixed(2);
+          "$" + thisMonthTotal.toFixed(2);
 
-        const dailyAvg = totalExpenses / 30;
+        // Daily Average
+        const daysInMonth = new Date(
+          selectedYear,
+          selectedMonth + 1,
+          0,
+        ).getDate();
+        const dailyAvg = daysInMonth > 0 ? thisMonthTotal / daysInMonth : 0;
         document.getElementById("daily-avg").textContent =
           "$" + dailyAvg.toFixed(2);
 
+        // % Change
+        let changeText = "No data";
+        if (lastMonthTotal > 0) {
+          const change =
+            ((thisMonthTotal - lastMonthTotal) / lastMonthTotal) * 100;
+          changeText = `${change >= 0 ? "↑" : "↓"} ${Math.abs(change).toFixed(1)}% vs last month`;
+        }
+        document.getElementById("monthly-change").textContent = changeText;
+
+        // Top 3 Expenses (only selected month)
+        const top = thisMonthTransactions
+          .sort((a, b) => b.amount - a.amount)
+          .slice(0, 3);
+        document.getElementById("top-expenses").innerHTML = top
+          .map(
+            (t) => `
+        <div class="flex justify-between py-3 border-b dark:border-slate-700">
+          <span class="dark:text-white">${t.description}</span>
+          <span class="text-red-500">-$${t.amount.toFixed(2)}</span>
+        </div>
+      `,
+          )
+          .join("");
+
+        // Charts (using selected month data)
         renderTrendChart();
         renderPieChart(expenseByCat);
       }
@@ -439,60 +553,53 @@
         const container = document.getElementById("trend-chart");
         container.innerHTML = "";
 
-        // ===== 1. Group expenses by month =====
-        const monthlyData = {};
+        const now = new Date(selectedYear, selectedMonth, 1);
 
+        const monthlyTotals = {};
+        const labels = [];
+
+        // Build last 6 months dynamically
+        for (let i = 5; i >= 0; i--) {
+          const d = new Date(now.getFullYear(), now.getMonth() - i, 1);
+
+          const key = `${d.getFullYear()}-${d.getMonth()}`;
+          monthlyTotals[key] = 0;
+
+          labels.push(d.toLocaleString("en-US", { month: "short" }));
+        }
+
+        // Fill real data
         transactions.forEach((t) => {
-          if (t.category !== "Income") {
-            const date = new Date(t.date);
+          if (t.category === "Income") return;
 
-            // Include year for accuracy
-            const key = `${date.getFullYear()}-${date.getMonth()}`;
-            monthlyData[key] = (monthlyData[key] || 0) + t.amount;
+          const date = new Date(t.date);
+          const key = `${date.getFullYear()}-${date.getMonth()}`;
+
+          if (monthlyTotals.hasOwnProperty(key)) {
+            monthlyTotals[key] += t.amount;
           }
         });
 
-        // ===== 2. Get last 6 months =====
-        const months = [];
-        const monthLabels = [];
-        const now = new Date();
+        const values = Object.values(monthlyTotals);
+        const max = Math.max(...values, 1);
 
-        for (let i = 5; i >= 0; i--) {
-          const d = new Date(now.getFullYear(), now.getMonth() - i, 1);
-          const key = `${d.getFullYear()}-${d.getMonth()}`;
-
-          months.push(monthlyData[key] || 0);
-          monthLabels.push(d.toLocaleString("en-US", { month: "short" }));
-        }
-
-        // ===== 3. Find max for scaling =====
-        const max = Math.max(...months, 1);
-
-        // ===== 4. Render bars =====
-        months.forEach((val, i) => {
-          const height = (val / max) * 220; // max height
+        values.forEach((val, i) => {
+          const height = (val / max) * 220;
 
           const bar = document.createElement("div");
           bar.className = "flex-1 flex flex-col justify-end items-center group";
 
           bar.innerHTML = `
       <div class="relative w-10 flex flex-col items-center">
-        <!-- Tooltip -->
         <span class="absolute -top-6 text-xs text-slate-500 opacity-0 group-hover:opacity-100 transition">
           $${val.toFixed(0)}
         </span>
 
-        <!-- Bar -->
-        <div class="w-8 bg-gradient-to-t from-blue-600 to-blue-300 rounded-t-lg 
-                    transition-all duration-500 hover:scale-105"
-             style="height: ${height}px">
-        </div>
+        <div class="w-8 bg-gradient-to-t from-blue-600 to-blue-300 rounded-t-lg transition-all duration-500"
+             style="height:${height}px"></div>
       </div>
 
-      <!-- Month -->
-      <span class="text-xs text-slate-400 mt-2">
-        ${monthLabels[i]}
-      </span>
+      <span class="text-xs text-slate-400 mt-2">${labels[i]}</span>
     `;
 
           container.appendChild(bar);
@@ -500,41 +607,68 @@
       }
 
       function renderPieChart(expenseByCat) {
-        const container = document.getElementById("pie-chart");
-        const legend = document.getElementById("category-legend");
-        legend.innerHTML = "";
+  const container = document.getElementById("pie-chart");
+  const legend = document.getElementById("category-legend");
 
-        const total = Object.values(expenseByCat).reduce((a, b) => a + b, 0);
-        if (total === 0) {
-          container.style.background = "#e2e8f0";
-          return;
-        }
+  legend.innerHTML = "";
 
-        const colors = ["#004ac6", "#006e2f", "#ab0b1c", "#ea580c", "#7c3aed"];
-        let gradient = "";
-        let offset = 0;
+  // ✅ ALWAYS reset chart first (IMPORTANT FIX)
+  container.style.background = "none";
+  container.innerHTML = "";
 
-        Object.keys(expenseByCat)
-          .slice(0, 5)
-          .forEach((cat, i) => {
-            const percent = (expenseByCat[cat] / total) * 100;
-            gradient += `${colors[i]} ${offset}% ${offset + percent}%, `;
-            offset += percent;
+  const entries = Object.entries(expenseByCat || {}).sort(
+    (a, b) => b[1] - a[1]
+  );
 
-            const div = document.createElement("div");
-            div.className = "flex justify-between items-center text-sm";
-            div.innerHTML = `
-          <div class="flex items-center gap-2">
-            <div class="w-3 h-3 rounded-full" style="background:${colors[i]}"></div>
-            <span class="dark:text-white">${cat}</span>
-          </div>
-          <span class="font-medium dark:text-white">$${expenseByCat[cat].toFixed(0)}</span>
-        `;
-            legend.appendChild(div);
-          });
+  const total = entries.reduce((sum, [, value]) => sum + value, 0);
 
-        container.style.background = `conic-gradient(${gradient}#e2e8f0 0% 100%)`;
-      }
+  // 🔴 If no data → show clean empty state
+  if (total === 0) {
+    container.innerHTML = `
+      <div class="text-center">
+        <p class="text-xs text-slate-400">No Data</p>
+        <p class="font-bold text-slate-700 dark:text-white">$0.00</p>
+      </div>
+    `;
+    return;
+  }
+
+  const colors = ["#004ac6", "#006e2f", "#ab0b1c", "#ea580c", "#7c3aed"];
+
+  let gradient = "";
+  let offset = 0;
+
+  const topCategories = entries.slice(0, 5);
+
+  topCategories.forEach(([cat, value], i) => {
+    const percent = (value / total) * 100;
+
+    gradient += `${colors[i]} ${offset}% ${offset + percent}%, `;
+    offset += percent;
+
+    const div = document.createElement("div");
+    div.className = "flex justify-between items-center text-sm py-1";
+    div.innerHTML = `
+      <div class="flex items-center gap-2">
+        <div class="w-3 h-3 rounded-full" style="background:${colors[i]}"></div>
+        <span class="dark:text-white">${cat}</span>
+      </div>
+      <span class="font-medium dark:text-white">$${value.toFixed(2)}</span>
+    `;
+    legend.appendChild(div);
+  });
+
+  gradient += `#e2e8f0 ${offset}% 100%`;
+
+  container.style.background = `conic-gradient(${gradient})`;
+
+  container.innerHTML = `
+    <div class="text-center">
+      <p class="text-xs text-slate-400">Total</p>
+      <p class="font-bold text-slate-700 dark:text-white">$${total.toFixed(2)}</p>
+    </div>
+  `;
+}
 
       function logout() {
         if (confirm("Are you sure you want to logout?")) {
@@ -561,7 +695,6 @@
         } else {
           window.location.href = "index.html";
         }
-
         const savedTheme = localStorage.getItem("fintrack_theme");
         if (savedTheme === "dark") {
           document.documentElement.classList.add("dark");
