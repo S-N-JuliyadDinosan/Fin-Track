@@ -4,6 +4,13 @@
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>FinTrack - Budget</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <script>
+      (function () {
+        const theme = localStorage.getItem("fintrack_theme");
+        if (theme === "dark") document.documentElement.classList.add("dark");
+      })();
+    </script>
 
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link
@@ -75,18 +82,6 @@
               xl: "0.75rem",
               full: "9999px",
             },
-            spacing: {
-              "2xl": "48px",
-              base: "8px",
-              sm: "8px",
-              xs: "4px",
-              "container-max": "1280px",
-              lg: "24px",
-              md: "16px",
-              "3xl": "64px",
-              gutter: "24px",
-              xl: "32px",
-            },
             fontFamily: {
               h2: ["Manrope"],
               "label-sm": ["Inter"],
@@ -141,23 +136,23 @@
     </style>
   </head>
   <body class="bg-background font-body-md text-on-surface antialiased">
-    <!-- SideNavBar - Same as index.html -->
+    <!-- SideNavBar -->
     <aside
-      class="fixed left-0 top-0 flex flex-col h-full z-50 bg-white border-r border-slate-200 h-screen w-64 font-manrope antialiased transition-all duration-200 ease-in-out"
+      class="fixed left-0 top-0 flex flex-col h-full z-50 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-700 h-screen w-64 font-manrope antialiased transition-all duration-200 ease-in-out"
     >
       <div class="p-6 flex items-center gap-3">
         <div
           class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white"
         >
-          <span
-            class="material-symbols-outlined"
-            style="font-variation-settings: &quot;FILL&quot; 1"
-            >account_balance_wallet</span
-          >
+          <span class="material-symbols-outlined">payments</span>
         </div>
         <div>
-          <h1 class="text-xl font-black text-slate-900">FinTrack</h1>
-          <p class="text-xs text-slate-500 uppercase tracking-wider font-bold">
+          <h1 class="text-xl font-black text-slate-900 dark:text-white">
+            FinTrack
+          </h1>
+          <p
+            class="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider font-bold"
+          >
             Personal Wealth
           </p>
         </div>
@@ -165,45 +160,45 @@
 
       <nav class="flex-1 mt-6 px-4 space-y-2">
         <a
-          class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 hover:text-slate-900 transition-all duration-200 ease-in-out"
+          class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800"
           href="index.html"
         >
           <span class="material-symbols-outlined">dashboard</span>
-          <span class="font-label-md text-label-md">Dashboard</span>
+          <span class="font-label-md">Dashboard</span>
         </a>
         <a
-          class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 hover:text-slate-900 transition-all duration-200 ease-in-out"
+          class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800"
           href="transactions.html"
         >
           <span class="material-symbols-outlined">receipt_long</span>
-          <span class="font-label-md text-label-md">Transactions</span>
+          <span class="font-label-md">Transactions</span>
         </a>
         <a
-          class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 hover:text-slate-900 transition-all duration-200 ease-in-out"
+          class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800"
           href="analytics.html"
         >
           <span class="material-symbols-outlined">analytics</span>
-          <span class="font-label-md text-label-md">Analytics</span>
+          <span class="font-label-md">Analytics</span>
         </a>
         <a
-          class="flex items-center gap-3 px-4 py-3 bg-blue-50 text-blue-600 font-semibold border-r-4 border-blue-600 transition-all duration-200 ease-in-out"
+          class="flex items-center gap-3 px-4 py-3 bg-blue-50 dark:bg-blue-950 text-blue-600 font-semibold border-r-4 border-blue-600"
           href="budget.html"
         >
           <span class="material-symbols-outlined">account_balance_wallet</span>
-          <span class="font-label-md text-label-md">Budget</span>
+          <span class="font-label-md">Budget</span>
         </a>
         <a
-          class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 hover:text-slate-900 transition-all duration-200 ease-in-out"
+          class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800"
           href="settings.html"
         >
           <span class="material-symbols-outlined">settings</span>
-          <span class="font-label-md text-label-md">Settings</span>
+          <span class="font-label-md">Settings</span>
         </a>
       </nav>
 
-      <div class="p-4 mt-auto border-t border-slate-100">
+      <div class="p-4 mt-auto border-t border-slate-100 dark:border-slate-700">
         <div
-          class="flex items-center gap-3 p-2 bg-surface-container-low rounded-xl"
+          class="flex items-center gap-3 p-2 bg-surface-container-low dark:bg-slate-800 rounded-xl"
         >
           <img
             alt="User Profile"
@@ -211,8 +206,15 @@
             src="https://lh3.googleusercontent.com/aida-public/AB6AXuAs77p-vP8nU90Ps89eS5qj6_aeiRvVgrN7no6dbPxT2_oKdZyyS03XLULtpy_Pp38RV0285HcoBlThPyoO-D2wlwkr4FZD2NC-9BjTz02B-VrpZU9eucKhikLj06U98w7UdTEJ-rzFE3R0t_lKtkRRtGMuBHljONct60UR95-RcAQmI9s6PmaE9FCm9-5GJ3y26cbNUBk9O2XfP_ZzJod50elOps-O4lcAqJpW7NaObJYUQbz1INLDY8cOg5z-_vi87mKzLsVv73EI"
           />
           <div class="overflow-hidden">
-            <p class="font-label-md text-on-surface truncate">Alex Sterling</p>
-            <p class="text-[10px] text-slate-500 truncate">Premium Member</p>
+            <p
+              class="font-label-md text-on-surface dark:text-white truncate"
+              id="display-username"
+            >
+              Alex Sterling
+            </p>
+            <p class="text-[10px] text-slate-500 dark:text-slate-400 truncate">
+              Premium Member
+            </p>
           </div>
         </div>
       </div>
@@ -220,259 +222,317 @@
 
     <!-- TopNavBar -->
     <header
-      class="sticky top-0 w-full flex items-center justify-between px-6 z-40 ml-64 bg-white/80 backdrop-blur-md h-16 border-b border-slate-200 shadow-sm"
+      class="sticky top-0 w-full flex items-center justify-between px-6 z-40 ml-64 bg-white/80 dark:bg-slate-900 backdrop-blur-md h-16 border-b border-slate-200 dark:border-slate-700 shadow-sm"
       style="width: calc(100% - 16rem)"
     >
       <div class="flex items-center gap-4">
-        <h2 class="font-h2 text-h2 text-slate-900">Budget</h2>
+        <h2 class="font-h2 text-h2 text-slate-900 dark:text-white">Budget</h2>
       </div>
       <div class="flex items-center gap-6">
         <div class="flex items-center gap-4 text-slate-500">
-          <button class="hover:text-blue-600 transition-colors">
-            <span class="material-symbols-outlined">dark_mode</span>
+          <button
+            onclick="toggleDarkMode()"
+            class="hover:text-blue-600 transition-colors"
+          >
+            <span class="material-symbols-outlined" id="theme-icon"
+              >dark_mode</span
+            >
           </button>
-          <div class="relative">
-            <button class="hover:text-blue-600 transition-colors">
-              <span class="material-symbols-outlined">notifications</span>
-            </button>
-            <span
-              class="absolute -top-1 -right-1 w-2 h-2 bg-error rounded-full border-2 border-white"
-            ></span>
-          </div>
-          <button class="hover:text-blue-600 transition-colors">
-            <span class="material-symbols-outlined">help</span>
+          <button
+            onclick="logout()"
+            class="hover:text-blue-600 transition-colors"
+          >
+            <span class="material-symbols-outlined">logout</span>
           </button>
         </div>
-        <div class="h-8 w-[1px] bg-slate-200"></div>
-        <p class="text-sm font-medium text-slate-600">October 2023</p>
+        <div class="h-8 w-[1px] bg-slate-200 dark:bg-slate-700"></div>
+        <p
+          id="current-date"
+          class="text-sm font-medium text-slate-600 dark:text-slate-400"
+        ></p>
       </div>
     </header>
 
     <!-- Main Content -->
-    <main class="ml-64 p-8 min-h-screen bg-surface">
+    <main class="ml-64 p-8 min-h-screen bg-surface dark:bg-slate-950">
       <div class="max-w-7xl mx-auto space-y-8">
-        <!-- Header -->
-        <div
-          class="flex flex-col md:flex-row md:items-center justify-between gap-6"
-        >
-          <div>
-            <h1 class="text-h1 font-display text-on-surface">
-              Monthly Budgeting
-            </h1>
-            <p class="text-body-md text-slate-500">
-              Manage your spending limits for October 2023
-            </p>
-          </div>
-          <div
-            class="flex items-center gap-4 bg-white p-2 px-5 rounded-2xl border border-slate-200"
-          >
-            <label class="text-label-md text-slate-500">Monthly Goal:</label>
-            <div class="relative">
-              <span
-                class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"
-                >$</span
-              >
-              <input
-                class="pl-8 py-2 w-32 border border-slate-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary bg-white font-bold"
-                type="number"
-                value="4500"
-              />
-            </div>
-            <button
-              class="bg-primary text-white px-6 py-2 rounded-xl font-medium hover:bg-blue-700 transition-colors"
-            >
-              Save
-            </button>
+        <!-- Month & Year Selector -->
+        <div class="flex justify-between items-center">
+          <h1 class="font-h1 text-h1 text-on-surface dark:text-white">
+            Monthly Budget
+          </h1>
+          <div class="flex gap-3">
+            <select
+              id="month-select"
+              onchange="loadBudgetData()"
+              class="bg-white dark:bg-slate-800 border border-slate-200 dark:text-white dark:border-slate-700 rounded-2xl pr-7 py-2 text-sm font-medium focus:ring-2 focus:ring-primary"
+            ></select>
+            <select
+              id="year-select"
+              onchange="loadBudgetData()"
+              class="bg-white dark:bg-slate-800 border border-slate-200 dark:text-white dark:border-slate-700 rounded-2xl pr-8 py-2 text-sm font-medium focus:ring-2 focus:ring-primary"
+            ></select>
           </div>
         </div>
 
-        <!-- Warning Banner -->
-        <div
-          class="bg-error-container border border-red-200 p-6 rounded-2xl flex items-start gap-4"
-        >
-          <div class="bg-tertiary text-white p-3 rounded-2xl">
-            <span class="material-symbols-outlined">warning</span>
-          </div>
-          <div class="flex-1">
-            <h3 class="font-semibold text-tertiary">
-              Budget Threshold Reached
+        <!-- Summary -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="bg-white dark:bg-slate-800 p-6 rounded-xl elevation-1">
+            <p class="text-sm text-slate-500 dark:text-slate-400">
+              Total Budget
+            </p>
+            <h3
+              id="total-budget"
+              class="text-4xl font-bold dark:text-white mt-1"
+            >
+              $0
             </h3>
-            <p class="text-sm text-on-error-container mt-1">
-              You have exceeded your Entertainment budget by $124.00. Consider
-              reducing variable expenses.
+          </div>
+          <div class="bg-white dark:bg-slate-800 p-6 rounded-xl elevation-1">
+            <p class="text-sm text-slate-500 dark:text-slate-400">
+              Total Spent
             </p>
+            <h3 id="total-spent" class="text-4xl font-bold text-tertiary mt-1">
+              $0
+            </h3>
           </div>
-        </div>
-
-        <!-- Spending Progress -->
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-          <div class="lg:col-span-8 bg-white p-8 rounded-2xl elevation-1">
-            <div class="flex items-center justify-between mb-8">
-              <h2 class="font-h2 text-h2">Spending Progress</h2>
-              <div class="flex items-center gap-6 text-sm">
-                <div class="flex items-center gap-2">
-                  <span class="w-3 h-3 bg-primary rounded-full"></span>
-                  <span>Spent</span>
-                </div>
-                <div class="flex items-center gap-2">
-                  <span class="w-3 h-3 bg-slate-200 rounded-full"></span>
-                  <span>Remaining</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="mb-8">
-              <div class="flex justify-between items-end mb-3">
-                <span class="text-4xl font-display font-bold"
-                  >$3,842.50
-                  <span class="text-2xl text-slate-400">/ $4,500.00</span>
-                </span>
-                <span class="text-3xl font-bold text-primary">85.4%</span>
-              </div>
-              <div class="w-full bg-slate-100 h-4 rounded-full overflow-hidden">
-                <div
-                  class="bg-primary h-full rounded-full"
-                  style="width: 85.4%"
-                ></div>
-              </div>
-            </div>
-
-            <div class="grid grid-cols-2 gap-6">
-              <div class="bg-slate-50 p-6 rounded-2xl">
-                <p class="text-sm text-slate-500">Daily Average</p>
-                <p class="text-3xl font-bold mt-2">$123.95</p>
-              </div>
-              <div class="bg-slate-50 p-6 rounded-2xl">
-                <p class="text-sm text-slate-500">Forecasted Spend</p>
-                <p class="text-3xl font-bold mt-2">$4,820.00</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Quick Summary -->
-          <div
-            class="lg:col-span-4 bg-primary-container text-on-primary-container p-8 rounded-2xl elevation-1 flex flex-col"
-          >
-            <h3 class="font-h2 text-h2 mb-8">Quick Summary</h3>
-            <div class="space-y-6 flex-1">
-              <div class="flex justify-between border-b border-white/20 pb-4">
-                <span class="opacity-90">Remaining to spend</span>
-                <span class="font-bold text-3xl">$657.50</span>
-              </div>
-              <div class="flex justify-between border-b border-white/20 pb-4">
-                <span class="opacity-90">Days remaining</span>
-                <span class="font-bold text-3xl">11</span>
-              </div>
-              <div class="flex justify-between">
-                <span class="opacity-90">Safe-to-spend / day</span>
-                <span class="font-bold text-3xl">$59.77</span>
-              </div>
-            </div>
-            <button
-              class="mt-10 w-full bg-white text-primary font-semibold py-4 rounded-2xl hover:bg-slate-50 transition-colors flex items-center justify-center gap-3"
+          <div class="bg-white dark:bg-slate-800 p-6 rounded-xl elevation-1">
+            <p class="text-sm text-slate-500 dark:text-slate-400">Remaining</p>
+            <h3
+              id="total-remaining"
+              class="text-4xl font-bold text-secondary mt-1"
             >
-              <span class="material-symbols-outlined">add_circle</span>
-              Adjust Limits
-            </button>
+              $0
+            </h3>
           </div>
         </div>
 
         <!-- Category Breakdown -->
-        <div>
-          <h2 class="font-h2 text-h2 mb-6">Category Breakdown</h2>
-          <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-            <!-- Food & Dining -->
-            <div class="bg-white p-6 rounded-2xl elevation-1">
-              <div class="flex justify-between mb-4">
-                <div class="flex items-center gap-4">
-                  <div
-                    class="w-10 h-10 bg-orange-100 rounded-xl flex items-center justify-center text-orange-600"
-                  >
-                    <span class="material-symbols-outlined">restaurant</span>
-                  </div>
-                  <div>
-                    <p class="font-medium">Food & Dining</p>
-                    <p class="text-xs text-slate-500">$740 of $800</p>
-                  </div>
-                </div>
-                <span class="font-bold text-orange-600">92%</span>
-              </div>
-              <div class="h-2 bg-slate-100 rounded-full overflow-hidden mb-3">
-                <div
-                  class="bg-orange-500 h-full rounded-full"
-                  style="width: 92%"
-                ></div>
-              </div>
-              <div class="flex justify-between text-xs">
-                <span class="text-slate-500">Target: $800</span>
-                <span class="text-orange-600">$60 left</span>
-              </div>
-            </div>
-
-            <!-- Transportation -->
-            <div class="bg-white p-6 rounded-2xl elevation-1">
-              <div class="flex justify-between mb-4">
-                <div class="flex items-center gap-4">
-                  <div
-                    class="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center text-blue-600"
-                  >
-                    <span class="material-symbols-outlined">commute</span>
-                  </div>
-                  <div>
-                    <p class="font-medium">Transportation</p>
-                    <p class="text-xs text-slate-500">$210 of $400</p>
-                  </div>
-                </div>
-                <span class="font-bold text-blue-600">52%</span>
-              </div>
-              <div class="h-2 bg-slate-100 rounded-full overflow-hidden mb-3">
-                <div
-                  class="bg-blue-500 h-full rounded-full"
-                  style="width: 52%"
-                ></div>
-              </div>
-              <div class="flex justify-between text-xs">
-                <span class="text-slate-500">Target: $400</span>
-                <span class="text-secondary">$190 left</span>
-              </div>
-            </div>
-
-            <!-- Entertainment (Over) -->
-            <div
-              class="bg-white p-6 rounded-2xl elevation-1 border border-tertiary/30"
-            >
-              <div class="flex justify-between mb-4">
-                <div class="flex items-center gap-4">
-                  <div
-                    class="w-10 h-10 bg-red-100 rounded-xl flex items-center justify-center text-tertiary"
-                  >
-                    <span class="material-symbols-outlined"
-                      >sports_esports</span
-                    >
-                  </div>
-                  <div>
-                    <p class="font-medium">Entertainment</p>
-                    <p class="text-xs text-tertiary">$424 of $300</p>
-                  </div>
-                </div>
-                <span class="font-bold text-tertiary">141%</span>
-              </div>
-              <div class="h-2 bg-slate-100 rounded-full overflow-hidden mb-3">
-                <div
-                  class="bg-tertiary h-full rounded-full"
-                  style="width: 100%"
-                ></div>
-              </div>
-              <div class="flex justify-between text-xs">
-                <span class="text-slate-500">Target: $300</span>
-                <span class="text-tertiary font-bold">-$124 over</span>
-              </div>
-            </div>
-
-            <!-- Add more categories as needed (Housing, Utilities, Shopping) -->
-          </div>
+        <div class="bg-white dark:bg-slate-800 p-6 rounded-3xl elevation-1">
+          <h2 class="font-h2 text-h2 mb-6 dark:text-white">
+            Category Breakdown
+          </h2>
+          <div
+            id="category-breakdown"
+            class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6"
+          ></div>
         </div>
       </div>
     </main>
+
+    <script>
+      const categories = [
+        "Income",
+        "Food & Dining",
+        "Housing",
+        "Transportation",
+        "Entertainment",
+        "Shopping",
+        "Utilities",
+        "Healthcare",
+        "Education",
+        "Travel",
+        "Miscellaneous",
+      ];
+
+      let currentUser = null;
+      let transactions = [];
+      let budgets = {};
+      let selectedYear = new Date().getFullYear();
+      let selectedMonth = new Date().getMonth();
+
+      function getMonthKey(year, month) {
+        return `${year}-${String(month + 1).padStart(2, "0")}`;
+      }
+
+      function showMainApp() {
+        document.getElementById("display-username").textContent = currentUser;
+        document.getElementById("current-date").textContent =
+          new Date().toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "short",
+            day: "numeric",
+          });
+        loadData();
+        populateSelectors();
+        loadBudgetData();
+      }
+
+      function loadData() {
+        transactions = JSON.parse(
+          localStorage.getItem(`transactions_${currentUser}`) || "[]",
+        );
+        budgets = JSON.parse(
+          localStorage.getItem(`budgets_${currentUser}`) || "{}",
+        );
+      }
+
+      function saveData() {
+        localStorage.setItem(`budgets_${currentUser}`, JSON.stringify(budgets));
+      }
+
+      function populateSelectors() {
+        const monthSelect = document.getElementById("month-select");
+        const yearSelect = document.getElementById("year-select");
+
+        const monthNames = [
+          "January",
+          "February",
+          "March",
+          "April",
+          "May",
+          "June",
+          "July",
+          "August",
+          "September",
+          "October",
+          "November",
+          "December",
+        ];
+
+        monthSelect.innerHTML = "";
+        for (let i = 0; i < 12; i++) {
+          const opt = document.createElement("option");
+          opt.value = i;
+          opt.textContent = monthNames[i];
+          if (i === selectedMonth) opt.selected = true;
+          monthSelect.appendChild(opt);
+        }
+
+        yearSelect.innerHTML = "";
+        for (let y = selectedYear - 3; y <= selectedYear + 2; y++) {
+          const opt = document.createElement("option");
+          opt.value = y;
+          opt.textContent = y;
+          if (y === selectedYear) opt.selected = true;
+          yearSelect.appendChild(opt);
+        }
+      }
+
+      function loadBudgetData() {
+        selectedMonth = parseInt(document.getElementById("month-select").value);
+        selectedYear = parseInt(document.getElementById("year-select").value);
+
+        const monthKey = getMonthKey(selectedYear, selectedMonth);
+        const currentBudgets = budgets[monthKey] || {};
+
+        const isCurrentOrFuture =
+          selectedYear > new Date().getFullYear() ||
+          (selectedYear === new Date().getFullYear() &&
+            selectedMonth >= new Date().getMonth());
+
+        const filteredTransactions = transactions.filter((t) => {
+          const d = new Date(t.date);
+          return (
+            d.getFullYear() === selectedYear &&
+            d.getMonth() === selectedMonth &&
+            t.category !== "Income"
+          );
+        });
+
+        const expenseByCat = {};
+        filteredTransactions.forEach((t) => {
+          expenseByCat[t.category] = (expenseByCat[t.category] || 0) + t.amount;
+        });
+
+        let totalBudget = 0,
+          totalSpent = 0;
+
+        const container = document.getElementById("category-breakdown");
+        container.innerHTML = "";
+
+        categories.forEach((cat) => {
+          if (cat === "Income") return;
+          const spent = expenseByCat[cat] || 0;
+          const budget = currentBudgets[cat] || 0;
+          totalBudget += budget;
+          totalSpent += spent;
+          const percent =
+            budget > 0 ? Math.min(Math.round((spent / budget) * 100), 100) : 0;
+
+          const canEdit = isCurrentOrFuture;
+
+          const div = document.createElement("div");
+          div.className =
+            "bg-white dark:bg-slate-800 p-6 rounded-2xl elevation-1";
+          div.innerHTML = `
+          <div class="flex justify-between items-start">
+            <div>
+              <p class="font-medium dark:text-white">${cat}</p>
+              <p class="text-sm text-slate-500 dark:text-slate-400">$${spent.toFixed(0)} / $${budget}</p>
+            </div>
+            ${canEdit ? `<button onclick="editBudget('${cat}')" class="text-xs px-4 py-2 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 rounded-xl">Edit</button>` : ""}
+          </div>
+          <div class="w-full h-3 bg-slate-100 dark:bg-slate-700 rounded-full mt-4 overflow-hidden">
+            <div class="h-full ${percent > 90 ? "bg-red-500" : "bg-primary"}" style="width: ${percent}%"></div>
+          </div>
+          <p class="text-xs text-right mt-2 ${percent > 90 ? "text-red-500" : "text-slate-500"}">${percent}% used</p>
+        `;
+          container.appendChild(div);
+        });
+
+        document.getElementById("total-budget").textContent =
+          "$" + totalBudget.toFixed(0);
+        document.getElementById("total-spent").textContent =
+          "$" + totalSpent.toFixed(0);
+        document.getElementById("total-remaining").textContent =
+          "$" + Math.max(0, totalBudget - totalSpent).toFixed(0);
+      }
+
+      function editBudget(category) {
+        const monthKey = getMonthKey(selectedYear, selectedMonth);
+        if (!budgets[monthKey]) budgets[monthKey] = {};
+
+        const current = budgets[monthKey][category] || 0;
+        const newVal = prompt(
+          `Set monthly budget for ${category} (${monthKey})`,
+          current,
+        );
+
+        if (newVal !== null) {
+          budgets[monthKey][category] = parseFloat(newVal) || 0;
+          saveData();
+          loadBudgetData();
+        }
+      }
+
+      function getMonthKey(year, month) {
+        return `${year}-${String(month + 1).padStart(2, "0")}`;
+      }
+
+      function logout() {
+        if (confirm("Are you sure you want to logout?")) {
+          localStorage.removeItem("fintrack_current_user");
+          location.reload();
+        }
+      }
+
+      function toggleDarkMode() {
+        const html = document.documentElement;
+        html.classList.toggle("dark");
+        localStorage.setItem(
+          "fintrack_theme",
+          html.classList.contains("dark") ? "dark" : "light",
+        );
+        document.getElementById("theme-icon").textContent =
+          html.classList.contains("dark") ? "light_mode" : "dark_mode";
+      }
+
+      window.onload = function () {
+        const savedUser = localStorage.getItem("fintrack_current_user");
+        if (savedUser) {
+          currentUser = savedUser;
+          showMainApp();
+        } else {
+          window.location.href = "index.html";
+        }
+
+        const savedTheme = localStorage.getItem("fintrack_theme");
+        if (savedTheme === "dark") {
+          document.documentElement.classList.add("dark");
+          document.getElementById("theme-icon").textContent = "light_mode";
+        }
+      };
+    </script>
   </body>
 </html>

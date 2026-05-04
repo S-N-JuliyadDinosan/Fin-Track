@@ -4,10 +4,10 @@
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>FinTrack - Personal Wealth</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <script>
       (function () {
         const theme = localStorage.getItem("fintrack_theme");
-
         if (theme === "dark") {
           document.documentElement.classList.add("dark");
         } else {
@@ -156,7 +156,6 @@
         border-radius: 20px;
       }
 
-      /* Dark Mode Styles */
       .dark body {
         background-color: #0f172a;
       }
@@ -188,7 +187,7 @@
     </style>
   </head>
   <body class="bg-background font-body-md text-on-surface antialiased">
-    <!-- ====================== AUTH SCREEN ====================== -->
+    <!-- AUTH SCREEN -->
     <div
       id="auth-screen"
       class="min-h-screen flex items-center justify-center bg-surface px-4"
@@ -267,7 +266,7 @@
       </div>
     </div>
 
-    <!-- ====================== MAIN APP ====================== -->
+    <!-- MAIN APP -->
     <div id="main-app" class="hidden">
       <!-- SideNavBar -->
       <aside
@@ -483,7 +482,7 @@
 
           <!-- Bento Grid -->
           <div class="bento-grid">
-            <!-- Quick Add Form -->
+            <!-- Quick Add -->
             <section
               class="col-span-12 lg:col-span-4 bg-white dark:bg-slate-800 p-6 rounded-xl elevation-1"
             >
@@ -555,13 +554,16 @@
               </form>
             </section>
 
-            <!-- Budget Section -->
+            <!-- Monthly Budget -->
             <div class="col-span-12 lg:col-span-8">
               <div
                 class="bg-white dark:bg-slate-800 p-6 rounded-xl elevation-1"
               >
                 <div class="flex items-center justify-between mb-5">
-                  <h4 class="font-h2 text-h2 text-on-surface dark:text-white">
+                  <h4
+                    id="budget-title"
+                    class="font-h2 text-h2 text-on-surface dark:text-white"
+                  >
                     Monthly Budget
                   </h4>
                   <span
@@ -572,9 +574,7 @@
                 <div
                   id="budget-list"
                   class="space-y-6 max-h-[340px] overflow-y-auto pr-3"
-                >
-                  <!-- Populated by JS -->
-                </div>
+                ></div>
               </div>
             </div>
 
@@ -638,6 +638,24 @@
       let transactions = [];
       let budgets = {};
 
+      function getCurrentMonthKey() {
+        const d = new Date();
+        return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}`;
+      }
+
+      function getCurrentMonthTransactions() {
+        const key = getCurrentMonthKey();
+        const [year, month] = key.split("-").map(Number);
+        return transactions.filter((t) => {
+          const d = new Date(t.date);
+          return (
+            d.getFullYear() === year &&
+            d.getMonth() === month - 1 &&
+            t.category !== "Income"
+          );
+        });
+      }
+
       function toggleAuthMode() {
         const isLogin =
           document.getElementById("auth-title").textContent === "Welcome Back";
@@ -667,7 +685,6 @@
       function handleAuth() {
         const username = document.getElementById("username").value.trim();
         const password = document.getElementById("password").value.trim();
-
         if (!username || !password) return alert("Please fill both fields");
 
         let users = JSON.parse(localStorage.getItem("fintrack_users") || "{}");
@@ -704,6 +721,8 @@
             day: "numeric",
           });
 
+        updateBudgetTitle();
+
         loadData();
         populateCategories();
         updateAll();
@@ -716,6 +735,15 @@
         budgets = JSON.parse(
           localStorage.getItem(`budgets_${currentUser}`) || "{}",
         );
+
+        // Migrate old flat budget structure to per-month
+        const currentKey = getCurrentMonthKey();
+        if (Object.keys(budgets).length > 0 && !budgets[currentKey]) {
+          const oldBudgets = { ...budgets };
+          budgets = {};
+          budgets[currentKey] = oldBudgets;
+          saveData();
+        }
       }
 
       function saveData() {
@@ -729,7 +757,6 @@
       function populateCategories() {
         const select = document.getElementById("category");
         select.innerHTML = "";
-
         const defaultOpt = document.createElement("option");
         defaultOpt.value = "";
         defaultOpt.textContent = "Select Category";
@@ -760,11 +787,10 @@
           transactions.unshift({
             id: Date.now(),
             description: desc,
-            amount: amount,
-            date: date,
-            category: category,
+            amount,
+            date,
+            category,
           });
-
           saveData();
           updateAll();
           this.reset();
@@ -799,10 +825,20 @@
           " transactions";
       }
 
+      function updateBudgetTitle() {
+        const now = new Date();
+        const formatted = now.toLocaleDateString("en-US", {
+          month: "long",
+          year: "numeric",
+        });
+
+        document.getElementById("budget-title").textContent =
+          "Monthly Budget - " + formatted;
+      }
+
       function renderRecentTransactions() {
         const tbody = document.getElementById("transactions-body");
         tbody.innerHTML = "";
-
         transactions.slice(0, 5).forEach((tx) => {
           const isIncome = tx.category === "Income";
           const row = document.createElement("tr");
@@ -812,13 +848,9 @@
           <td class="px-6 py-4">${tx.description}</td>
           <td class="px-6 py-4"><span class="px-3 py-1 text-xs rounded-full ${isIncome ? "bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300" : "bg-orange-100 dark:bg-orange-900 text-orange-700 dark:text-orange-300"}">${tx.category}</span></td>
           <td class="px-6 py-4 text-slate-500 dark:text-slate-400">${tx.date}</td>
-          <td class="px-6 py-4 font-bold text-right ${isIncome ? "text-secondary" : "text-tertiary"}">
-            ${isIncome ? "+" : "-"}$${Math.abs(tx.amount).toFixed(2)}
-          </td>
+          <td class="px-6 py-4 font-bold text-right ${isIncome ? "text-secondary" : "text-tertiary"}">${isIncome ? "+" : "-"}$${Math.abs(tx.amount).toFixed(2)}</td>
           <td class="px-6 py-4 text-center">
-            <button onclick="deleteTransaction(${tx.id})" class="text-slate-400 hover:text-red-600">
-              <span class="material-symbols-outlined">delete</span>
-            </button>
+            <button onclick="deleteTransaction(${tx.id})" class="text-slate-400 hover:text-red-600"><span class="material-symbols-outlined">delete</span></button>
           </td>
         `;
           tbody.appendChild(row);
@@ -837,12 +869,21 @@
         const container = document.getElementById("budget-list");
         container.innerHTML = "";
 
+        const currentKey = getCurrentMonthKey();
+        if (!budgets[currentKey]) budgets[currentKey] = {};
+
+        const currentBudgets = budgets[currentKey];
+        const currentTx = getCurrentMonthTransactions();
+
+        const spentByCat = {};
+        currentTx.forEach((t) => {
+          spentByCat[t.category] = (spentByCat[t.category] || 0) + t.amount;
+        });
+
         categories.forEach((cat) => {
           if (cat === "Income") return;
-          const spent = transactions
-            .filter((t) => t.category === cat)
-            .reduce((sum, t) => sum + t.amount, 0);
-          const budget = budgets[cat] || 0;
+          const spent = spentByCat[cat] || 0;
+          const budget = currentBudgets[cat] || 0;
           const percent =
             budget > 0 ? Math.min(Math.round((spent / budget) * 100), 100) : 0;
 
@@ -865,10 +906,17 @@
       }
 
       function editSingleBudget(category) {
-        const current = budgets[category] || 0;
-        const newBudget = prompt(`Set monthly budget for ${category}`, current);
+        const currentKey = getCurrentMonthKey();
+        if (!budgets[currentKey]) budgets[currentKey] = {};
+
+        const current = budgets[currentKey][category] || 0;
+        const newBudget = prompt(
+          `Set monthly budget for ${category} (${currentKey})`,
+          current,
+        );
+
         if (newBudget !== null) {
-          budgets[category] = parseFloat(newBudget) || 0;
+          budgets[currentKey][category] = parseFloat(newBudget) || 0;
           saveData();
           renderBudgetSection();
         }
