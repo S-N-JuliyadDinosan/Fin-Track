@@ -1,4 +1,4 @@
-<!-- favicon.svg -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-  <text y="20" font-size="20" font-family="Arial">💳</text>
+  <rect width="24" height="24" rx="6" fill="#2563eb"/>
+  <path d="M8 6h8v2H10v3h5v2h-5v5H8V6z" fill="white"/>
 </svg>
