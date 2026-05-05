@@ -133,7 +133,6 @@
         box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.05);
       }
 
-      /* Mobile-friendly Date Range */
       .date-range {
         display: flex;
         align-items: center;
@@ -149,7 +148,7 @@
     </style>
   </head>
   <body class="bg-background font-body-md text-on-surface antialiased">
-    <!-- SideNavBar (Exact same as index.html) -->
+    <!-- SideNavBar -->
     <aside
       id="sidebar"
       class="fixed left-0 top-0 flex flex-col h-full z-50 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-700 w-64 md:w-64 transition-all duration-300 ease-in-out md:translate-x-0 -translate-x-full"
@@ -547,7 +546,7 @@
         populateAllCategories();
         filteredData = [...transactions];
         renderTransactions();
-        loadProfileImage(); // ← Added this
+        loadProfileImage();
       }
 
       function loadData() {
