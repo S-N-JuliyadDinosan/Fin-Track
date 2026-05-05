@@ -132,12 +132,27 @@
       .elevation-1 {
         box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.05);
       }
+
+      /* Mobile-friendly Date Range */
+      .date-range {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      @media (max-width: 640px) {
+        .date-range {
+          flex-direction: column;
+          align-items: stretch;
+          gap: 8px;
+        }
+      }
     </style>
   </head>
   <body class="bg-background font-body-md text-on-surface antialiased">
-    <!-- SideNavBar -->
+    <!-- SideNavBar (Exact same as index.html) -->
     <aside
-      class="fixed left-0 top-0 flex flex-col h-full z-50 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-700 h-screen w-64 font-manrope antialiased transition-all duration-200 ease-in-out"
+      id="sidebar"
+      class="fixed left-0 top-0 flex flex-col h-full z-50 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-700 w-64 md:w-64 transition-all duration-300 ease-in-out md:translate-x-0 -translate-x-full"
     >
       <div class="p-6 flex items-center gap-3">
         <div
@@ -158,35 +173,35 @@
       </div>
       <nav class="flex-1 mt-6 px-4 space-y-2">
         <a
-          class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800"
+          class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl"
           href="index.html"
         >
           <span class="material-symbols-outlined">dashboard</span>
           <span class="font-label-md">Dashboard</span>
         </a>
         <a
-          class="flex items-center gap-3 px-4 py-3 bg-blue-50 dark:bg-blue-950 text-blue-600 font-semibold border-r-4 border-blue-600"
+          class="flex items-center gap-3 px-4 py-3 bg-blue-50 dark:bg-blue-950 text-blue-600 font-semibold border-r-4 border-blue-600 rounded-r-xl"
           href="transactions.html"
         >
           <span class="material-symbols-outlined">receipt_long</span>
           <span class="font-label-md">Transactions</span>
         </a>
         <a
-          class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800"
+          class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl"
           href="analytics.html"
         >
           <span class="material-symbols-outlined">analytics</span>
           <span class="font-label-md">Analytics</span>
         </a>
         <a
-          class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800"
+          class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl"
           href="budget.html"
         >
           <span class="material-symbols-outlined">account_balance_wallet</span>
           <span class="font-label-md">Budget</span>
         </a>
         <a
-          class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800"
+          class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl"
           href="settings.html"
         >
           <span class="material-symbols-outlined">settings</span>
@@ -194,31 +209,75 @@
         </a>
       </nav>
       <div class="p-4 mt-auto border-t border-slate-100 dark:border-slate-700">
-        <div
-          class="flex items-center gap-3 p-2 bg-surface-container-low dark:bg-slate-800 rounded-xl"
+        <a
+          href="settings.html"
+          class="flex items-center gap-3 p-2 bg-surface-container-low dark:bg-slate-800 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
         >
-          <img
-            alt="User Profile"
-            class="w-10 h-10 rounded-full border-2 border-white shadow-sm"
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAs77p-vP8nU90Ps89eS5qj6_aeiRvVgrN7no6dbPxT2_oKdZyyS03XLULtpy_Pp38RV0285HcoBlThPyoO-D2wlwkr4FZD2NC-9BjTz02B-VrpZU9eucKhikLj06U98w7UdTEJ-rzFE3R0t_lKtkRRtGMuBHljONct60UR95-RcAQmI9s6PmaE9FCm9-5GJ3y26cbNUBk9O2XfP_ZzJod50elOps-O4lcAqJpW7NaObJYUQbz1INLDY8cOg5z-_vi87mKzLsVv73EI"
-          />
+          <div
+            id="profile-pic"
+            class="w-10 h-10 rounded-full border-2 border-white shadow-sm overflow-hidden flex items-center justify-center bg-slate-200 dark:bg-slate-700"
+          >
+            <span class="material-symbols-outlined text-3xl text-slate-500"
+              >person</span
+            >
+          </div>
           <div class="overflow-hidden">
             <p
               class="font-label-md text-on-surface dark:text-white truncate"
               id="display-username"
-            >
-              Alex Sterling
-            </p>
-            <p class="text-[10px] text-slate-500 dark:text-slate-400 truncate">
-              Premium Member
-            </p>
+            ></p>
           </div>
-        </div>
+        </a>
       </div>
     </aside>
-    <!-- TopNavBar -->
+
+    <!-- Mobile Top Bar -->
     <header
-      class="sticky top-0 w-full flex items-center justify-between px-6 z-40 ml-64 bg-white/80 dark:bg-slate-900 backdrop-blur-md h-16 border-b border-slate-200 dark:border-slate-700 shadow-sm"
+      class="md:hidden fixed top-0 left-0 right-0 bg-white/95 dark:bg-slate-900 backdrop-blur-md z-50 border-b border-slate-200 dark:border-slate-700 h-16 flex items-center px-4"
+    >
+      <button
+        onclick="toggleMobileSidebar()"
+        class="p-2 -ml-2 text-slate-700 dark:text-slate-300"
+      >
+        <span class="material-symbols-outlined text-3xl">menu</span>
+      </button>
+
+      <div class="flex-1 flex justify-center">
+        <div class="flex items-center gap-2">
+          <div
+            class="w-8 h-8 bg-primary rounded-xl flex items-center justify-center text-white"
+          >
+            <span class="material-symbols-outlined text-xl">payments</span>
+          </div>
+          <h1 class="font-black text-xl text-slate-900 dark:text-white">
+            FinTrack
+          </h1>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-1">
+        <button
+          onclick="toggleDarkMode()"
+          class="p-3 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl"
+        >
+          <span
+            class="material-symbols-outlined text-2xl"
+            id="theme-icon-mobile"
+            >dark_mode</span
+          >
+        </button>
+        <button
+          onclick="logout()"
+          class="p-3 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl"
+        >
+          <span class="material-symbols-outlined text-2xl">logout</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Desktop TopNavBar -->
+    <header
+      class="hidden md:flex sticky top-0 w-full items-center justify-between px-6 z-40 ml-64 bg-white/80 dark:bg-slate-900 backdrop-blur-md h-16 border-b border-slate-200 dark:border-slate-700 shadow-sm"
       style="width: calc(100% - 16rem)"
     >
       <div class="flex items-center gap-4">
@@ -230,7 +289,7 @@
         <div class="flex items-center gap-4 text-slate-500">
           <button
             onclick="toggleDarkMode()"
-            class="text-slate-400 hover:text-blue-600 transition-colors"
+            class="hover:text-blue-600 transition-colors"
           >
             <span class="material-symbols-outlined" id="theme-icon"
               >dark_mode</span
@@ -238,7 +297,7 @@
           </button>
           <button
             onclick="logout()"
-            class="text-slate-400 hover:text-blue-600 transition-colors"
+            class="hover:text-blue-600 transition-colors"
           >
             <span class="material-symbols-outlined">logout</span>
           </button>
@@ -250,21 +309,20 @@
         ></p>
       </div>
     </header>
+
     <!-- Main Content -->
-    <main class="ml-64 p-8 min-h-screen bg-surface dark:bg-slate-950">
-      <div class="max-w-7xl mx-auto space-y-8">
+    <main
+      class="md:ml-64 pt-16 md:pt-0 min-h-screen bg-surface dark:bg-slate-950"
+    >
+      <div class="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8 space-y-8">
         <!-- Advanced Filter Bar -->
-        <div
-          class="flex flex-col xl:flex-row xl:items-center xl:justify-between gap-4"
-        >
-          <div class="flex flex-wrap items-center gap-3 w-full">
-            <!-- Search -->
-            <div class="relative flex-1 min-w-[260px]">
+        <div class="flex flex-col gap-4">
+          <div class="flex flex-wrap items-center gap-3">
+            <div class="relative flex-1 min-w-[240px]">
               <span
                 class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"
+                >search</span
               >
-                search
-              </span>
               <input
                 id="search-input"
                 class="w-full pl-11 pr-4 py-3 bg-white dark:bg-slate-800 border border-slate-200 dark:text-white dark:border-slate-700 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-primary"
@@ -272,7 +330,6 @@
               />
             </div>
 
-            <!-- Category -->
             <select
               id="category-filter"
               class="bg-white dark:bg-slate-800 border border-slate-200 dark:text-white dark:border-slate-700 rounded-2xl pr-7 py-3 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary"
@@ -280,61 +337,60 @@
               <option value="">All Categories</option>
             </select>
 
-            <!-- Dates -->
             <div
-              class="flex items-center gap-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl px-4 py-1 shadow-sm"
+              class="date-range bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl px-4 py-2 flex-1 sm:flex-none"
             >
-              <span class="text-xs text-slate-400 whitespace-nowrap">From</span>
+              <div class="flex items-center gap-2 w-full">
+                <span class="text-xs text-slate-400 whitespace-nowrap"
+                  >From</span
+                >
+                <input
+                  id="from-date"
+                  type="date"
+                  class="bg-transparent text-sm dark:text-white focus:outline-none flex-1"
+                />
+              </div>
+              <div class="flex items-center gap-2 w-full">
+                <span class="text-xs text-slate-400 whitespace-nowrap">To</span>
+                <input
+                  id="to-date"
+                  type="date"
+                  class="bg-transparent text-sm dark:text-white focus:outline-none flex-1"
+                />
+              </div>
+            </div>
 
+            <div class="flex gap-3">
               <input
-                id="from-date"
-                type="date"
-                class="bg-transparent text-sm dark:text-white focus:outline-none py-2"
+                id="min-amount"
+                type="number"
+                placeholder="Min $"
+                class="bg-white dark:bg-slate-800 border border-slate-200 dark:text-white dark:border-slate-700 rounded-2xl px-4 py-3 text-sm w-28"
               />
-
-              <div class="w-px h-5 bg-slate-200 dark:bg-slate-600"></div>
-
-              <span class="text-xs text-slate-400 whitespace-nowrap">To</span>
-
               <input
-                id="to-date"
-                type="date"
-                class="bg-transparent text-sm dark:text-white focus:outline-none py-2"
+                id="max-amount"
+                type="number"
+                placeholder="Max $"
+                class="bg-white dark:bg-slate-800 border border-slate-200 dark:text-white dark:border-slate-700 rounded-2xl px-4 py-3 text-sm w-28"
               />
             </div>
 
-            <!-- Min -->
-            <input
-              id="min-amount"
-              type="number"
-              placeholder="Min $"
-              class="bg-white dark:bg-slate-800 border border-slate-200 dark:text-white dark:border-slate-700 rounded-2xl px-4 py-3 text-sm w-28"
-            />
-
-            <!-- Max -->
-            <input
-              id="max-amount"
-              type="number"
-              placeholder="Max $"
-              class="bg-white dark:bg-slate-800 border border-slate-200 dark:text-white dark:border-slate-700 rounded-2xl px-4 py-3 text-sm w-28"
-            />
-
-            <!-- Add Button (NOW PROPERLY ALIGNED) -->
             <button
               onclick="showQuickAddModal()"
-              class="flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-2xl font-semibold shadow-sm hover:bg-blue-700 transition-all whitespace-nowrap"
+              class="flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-2xl font-semibold shadow-sm hover:bg-blue-700 transition-all whitespace-nowrap w-full sm:w-auto justify-center"
             >
               <span class="material-symbols-outlined">add_circle</span>
               Add Transaction
             </button>
           </div>
         </div>
+
         <!-- Transactions Table -->
         <div
           class="bg-white dark:bg-slate-800 rounded-3xl elevation-1 overflow-hidden"
         >
           <div class="overflow-x-auto">
-            <table class="w-full text-left">
+            <table class="w-full text-left min-w-[640px]">
               <thead
                 class="bg-surface-container-low dark:bg-slate-700 text-slate-500 dark:text-slate-400 font-label-sm uppercase tracking-wider"
               >
@@ -353,19 +409,23 @@
             </table>
           </div>
         </div>
+
         <!-- Pagination -->
         <div
           id="pagination"
-          class="flex justify-center items-center gap-2 mt-6"
+          class="flex justify-center items-center gap-2 mt-6 flex-wrap"
         ></div>
       </div>
     </main>
+
     <!-- Quick Add Modal -->
     <div
       id="quick-add-modal"
-      class="hidden fixed inset-0 bg-black/60 flex items-center justify-center z-50"
+      class="hidden fixed inset-0 bg-black/60 flex items-center justify-center z-[60] p-4"
     >
-      <div class="bg-white dark:bg-slate-800 rounded-3xl p-8 w-full max-w-md">
+      <div
+        class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 w-full max-w-md"
+      >
         <h3 class="text-2xl font-semibold mb-6 text-slate-900 dark:text-white">
           Add New Transaction
         </h3>
@@ -438,6 +498,7 @@
         </form>
       </div>
     </div>
+
     <script>
       const categories = [
         "Income",
@@ -457,6 +518,23 @@
       let currentPage = 1;
       const rowsPerPage = 10;
       let filteredData = [];
+
+      function toggleMobileSidebar() {
+        document
+          .getElementById("sidebar")
+          .classList.toggle("-translate-x-full");
+      }
+
+      function loadProfileImage() {
+        const imgContainer = document.getElementById("profile-pic");
+        const savedImage = localStorage.getItem(`profile_pic_${currentUser}`);
+        if (savedImage) {
+          imgContainer.innerHTML = `<img src="${savedImage}" class="w-full h-full object-cover" />`;
+        } else {
+          imgContainer.innerHTML = `<span class="material-symbols-outlined text-3xl text-slate-500">person</span>`;
+        }
+      }
+
       function showMainApp() {
         document.getElementById("display-username").textContent = currentUser;
         document.getElementById("current-date").textContent =
@@ -469,7 +547,9 @@
         populateAllCategories();
         filteredData = [...transactions];
         renderTransactions();
+        loadProfileImage(); // ← Added this
       }
+
       function loadData() {
         transactions = JSON.parse(
           localStorage.getItem(`transactions_${currentUser}`) || "[]",
@@ -481,6 +561,7 @@
           JSON.stringify(transactions),
         );
       }
+
       function populateAllCategories() {
         const select = document.getElementById("category-filter");
         select.innerHTML = `<option value="">All Categories</option>`;
@@ -491,6 +572,7 @@
           select.appendChild(opt);
         });
       }
+
       function populateModalCategories() {
         const select = document.getElementById("modal-category");
         select.innerHTML = `<option value="">Select Category</option>`;
@@ -501,40 +583,36 @@
           select.appendChild(opt);
         });
       }
+
       function renderTransactions() {
         const tbody = document.getElementById("transactions-body");
         tbody.innerHTML = "";
         const start = (currentPage - 1) * rowsPerPage;
         const paginated = filteredData.slice(start, start + rowsPerPage);
+
         if (paginated.length === 0) {
           tbody.innerHTML = `<tr><td colspan="5" class="px-6 py-12 text-center text-slate-400 dark:text-slate-500">No transactions found</td></tr>`;
           renderPagination();
           return;
         }
+
         paginated.forEach((tx) => {
           const isIncome = tx.category === "Income";
           const row = document.createElement("tr");
           row.className =
             "hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors";
           row.innerHTML = `
-          <td class="px-6 py-5 font-medium dark:text-white">${tx.description}</td>
-          <td class="px-6 py-5">
-            <span class="px-4 py-1 text-xs rounded-full ${isIncome ? "bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300" : "bg-orange-100 dark:bg-orange-900 text-orange-700 dark:text-orange-300"}">${tx.category}</span>
-          </td>
-          <td class="px-6 py-5 text-slate-500 dark:text-slate-400">${tx.date}</td>
-          <td class="px-6 py-5 font-bold text-right ${isIncome ? "text-secondary" : "text-tertiary"}">
-            ${isIncome ? "+" : "-"}$${Math.abs(tx.amount).toFixed(2)}
-          </td>
-          <td class="px-6 py-5 text-center">
-            <button onclick="deleteTransaction(${tx.id})" class="text-slate-400 hover:text-red-600">
-              <span class="material-symbols-outlined">delete</span>
-            </button>
-          </td>
-        `;
+            <td class="px-6 py-5 font-medium dark:text-white">${tx.description}</td>
+            <td class="px-6 py-5"><span class="px-4 py-1 text-xs rounded-full ${isIncome ? "bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300" : "bg-orange-100 dark:bg-orange-900 text-orange-700 dark:text-orange-300"}">${tx.category}</span></td>
+            <td class="px-6 py-5 text-slate-500 dark:text-slate-400">${tx.date}</td>
+            <td class="px-6 py-5 font-bold text-right ${isIncome ? "text-secondary" : "text-tertiary"}">${isIncome ? "+" : "-"}$${Math.abs(tx.amount).toFixed(2)}</td>
+            <td class="px-6 py-5 text-center"><button onclick="deleteTransaction(${tx.id})" class="text-slate-400 hover:text-red-600"><span class="material-symbols-outlined">delete</span></button></td>
+          `;
           tbody.appendChild(row);
         });
         renderPagination();
       }
+
       function renderPagination() {
         const container = document.getElementById("pagination");
         container.innerHTML = "";
@@ -550,6 +628,17 @@
           container.appendChild(btn);
         }
       }
+
+      function loadProfileImage() {
+        const imgContainer = document.getElementById("profile-pic");
+        const savedImage = localStorage.getItem(`profile_pic_${currentUser}`);
+        if (savedImage) {
+          imgContainer.innerHTML = `<img src="${savedImage}" class="w-full h-full object-cover" />`;
+        } else {
+          imgContainer.innerHTML = `<span class="material-symbols-outlined text-3xl text-slate-500">person</span>`;
+        }
+      }
+
       function deleteTransaction(id) {
         if (confirm("Delete this transaction?")) {
           transactions = transactions.filter((t) => t.id !== id);
@@ -559,6 +648,7 @@
           renderTransactions();
         }
       }
+
       function filterTransactions() {
         const searchTerm = document
           .getElementById("search-input")
@@ -573,42 +663,40 @@
         const maxAmount = parseFloat(
           document.getElementById("max-amount").value,
         );
+
         filteredData = transactions.filter((tx) => {
           const txDate = new Date(tx.date);
           const from = fromDate ? new Date(fromDate) : null;
           const to = toDate ? new Date(toDate) : null;
           const amount = Math.abs(tx.amount);
-          const matchesSearch =
-            !searchTerm ||
-            tx.description.toLowerCase().includes(searchTerm) ||
-            tx.category.toLowerCase().includes(searchTerm);
-          const matchesCategory =
-            !categoryFilter || tx.category === categoryFilter;
-          const matchesFrom = !from || txDate >= from;
-          const matchesTo = !to || txDate <= to;
-          const matchesMin = isNaN(minAmount) || amount >= minAmount;
-          const matchesMax = isNaN(maxAmount) || amount <= maxAmount;
+
           return (
-            matchesSearch &&
-            matchesCategory &&
-            matchesFrom &&
-            matchesTo &&
-            matchesMin &&
-            matchesMax
+            (!searchTerm ||
+              tx.description.toLowerCase().includes(searchTerm) ||
+              tx.category.toLowerCase().includes(searchTerm)) &&
+            (!categoryFilter || tx.category === categoryFilter) &&
+            (!from || txDate >= from) &&
+            (!to || txDate <= to) &&
+            (isNaN(minAmount) || amount >= minAmount) &&
+            (isNaN(maxAmount) || amount <= maxAmount)
           );
         });
+
         currentPage = 1;
         renderTransactions();
       }
+
       function showQuickAddModal() {
         document.getElementById("quick-add-modal").classList.remove("hidden");
         document.getElementById("modal-date").valueAsDate = new Date();
         populateModalCategories();
       }
+
       function hideQuickAddModal() {
         document.getElementById("quick-add-modal").classList.add("hidden");
         document.getElementById("modal-form").reset();
       }
+
       document
         .getElementById("modal-form")
         .addEventListener("submit", function (e) {
@@ -621,6 +709,7 @@
           const category = document.getElementById("modal-category").value;
           if (!desc || !amount || !date || !category)
             return alert("Please fill all fields");
+
           transactions.unshift({
             id: Date.now(),
             description: desc,
@@ -634,6 +723,7 @@
           renderTransactions();
           hideQuickAddModal();
         });
+
       function toggleDarkMode() {
         const html = document.documentElement;
         html.classList.toggle("dark");
@@ -641,16 +731,25 @@
           "fintrack_theme",
           html.classList.contains("dark") ? "dark" : "light",
         );
-        document.getElementById("theme-icon").textContent =
-          html.classList.contains("dark") ? "light_mode" : "dark_mode";
+        const icon = document.getElementById("theme-icon");
+        const iconMobile = document.getElementById("theme-icon-mobile");
+        if (icon)
+          icon.textContent = html.classList.contains("dark")
+            ? "light_mode"
+            : "dark_mode";
+        if (iconMobile)
+          iconMobile.textContent = html.classList.contains("dark")
+            ? "light_mode"
+            : "dark_mode";
       }
+
       function logout() {
         if (confirm("Are you sure you want to logout?")) {
           localStorage.removeItem("fintrack_current_user");
           location.reload();
         }
       }
-      // Initialize
+
       window.onload = function () {
         const savedUser = localStorage.getItem("fintrack_current_user");
         if (savedUser) {
@@ -659,12 +758,16 @@
         } else {
           window.location.href = "index.html";
         }
+
         const savedTheme = localStorage.getItem("fintrack_theme");
         if (savedTheme === "dark") {
           document.documentElement.classList.add("dark");
-          document.getElementById("theme-icon").textContent = "light_mode";
+          const icon = document.getElementById("theme-icon");
+          const iconMobile = document.getElementById("theme-icon-mobile");
+          if (icon) icon.textContent = "light_mode";
+          if (iconMobile) iconMobile.textContent = "light_mode";
         }
-        // Live filters
+
         const filterIds = [
           "search-input",
           "category-filter",
@@ -675,8 +778,21 @@
         ];
         filterIds.forEach((id) => {
           const el = document.getElementById(id);
-          el.addEventListener("input", filterTransactions);
-          el.addEventListener("change", filterTransactions);
+          if (el) {
+            el.addEventListener("input", filterTransactions);
+            el.addEventListener("change", filterTransactions);
+          }
+        });
+
+        document.addEventListener("click", function (e) {
+          const sidebar = document.getElementById("sidebar");
+          if (
+            window.innerWidth < 768 &&
+            !sidebar.contains(e.target) &&
+            !e.target.closest('button[onclick="toggleMobileSidebar()"]')
+          ) {
+            sidebar.classList.add("-translate-x-full");
+          }
         });
       };
     </script>

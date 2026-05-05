@@ -15,7 +15,6 @@
         }
       })();
     </script>
-
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link
       href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800;900&amp;family=Inter:wght@400;500;600&amp;display=swap"
@@ -25,7 +24,6 @@
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
       rel="stylesheet"
     />
-
     <script id="tailwind-config">
       tailwind.config = {
         darkMode: "class",
@@ -124,7 +122,6 @@
         },
       };
     </script>
-
     <style>
       .material-symbols-outlined {
         font-variation-settings:
@@ -155,7 +152,6 @@
         background-color: #cbd5e1;
         border-radius: 20px;
       }
-
       .dark body {
         background-color: #0f172a;
       }
@@ -184,16 +180,25 @@
       .dark .bg-surface {
         background-color: #0f172a;
       }
+
+      @media (max-width: 768px) {
+        .bento-grid {
+          gap: 16px;
+        }
+        #budget-list {
+          max-height: 280px;
+        }
+      }
     </style>
   </head>
   <body class="bg-background font-body-md text-on-surface antialiased">
     <!-- AUTH SCREEN -->
     <div
       id="auth-screen"
-      class="min-h-screen flex items-center justify-center bg-surface px-4"
+      class="min-h-screen flex items-center justify-center bg-surface px-4 py-8"
     >
       <div
-        class="max-w-md w-full bg-white dark:bg-slate-800 rounded-3xl elevation-1 p-10"
+        class="max-w-md w-full bg-white dark:bg-slate-800 rounded-3xl elevation-1 p-8 sm:p-10"
       >
         <div class="text-center mb-8">
           <div
@@ -210,14 +215,12 @@
             Personal Wealth Manager
           </p>
         </div>
-
         <h2
           id="auth-title"
           class="text-2xl font-semibold text-center mb-6 text-slate-900 dark:text-white"
         >
           Create Account
         </h2>
-
         <div class="space-y-5">
           <div>
             <label
@@ -243,14 +246,12 @@
               placeholder="Create a password"
             />
           </div>
-
           <button
             onclick="handleAuth()"
             class="w-full bg-primary hover:bg-blue-700 text-white py-4 rounded-2xl font-semibold text-lg transition-colors mt-4"
           >
             <span id="auth-btn-text">Create Account</span>
           </button>
-
           <p
             id="toggle-text"
             class="text-center text-sm text-slate-500 dark:text-slate-400 mt-6"
@@ -270,7 +271,8 @@
     <div id="main-app" class="hidden">
       <!-- SideNavBar -->
       <aside
-        class="fixed left-0 top-0 flex flex-col h-full z-50 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-700 h-screen w-64 font-manrope antialiased transition-all duration-200 ease-in-out"
+        id="sidebar"
+        class="fixed left-0 top-0 flex flex-col h-full z-50 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-700 w-64 md:w-64 transition-all duration-300 ease-in-out md:translate-x-0 -translate-x-full"
       >
         <div class="p-6 flex items-center gap-3">
           <div
@@ -289,31 +291,30 @@
             </p>
           </div>
         </div>
-
         <nav class="flex-1 mt-6 px-4 space-y-2">
           <a
-            class="flex items-center gap-3 px-4 py-3 bg-blue-50 dark:bg-blue-950 text-blue-600 font-semibold border-r-4 border-blue-600"
+            class="flex items-center gap-3 px-4 py-3 bg-blue-50 dark:bg-blue-950 text-blue-600 font-semibold border-r-4 border-blue-600 rounded-r-xl"
             href="#"
           >
             <span class="material-symbols-outlined">dashboard</span>
             <span class="font-label-md">Dashboard</span>
           </a>
           <a
-            class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800"
+            class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl"
             href="transactions.html"
           >
             <span class="material-symbols-outlined">receipt_long</span>
             <span class="font-label-md">Transactions</span>
           </a>
           <a
-            class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800"
+            class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl"
             href="analytics.html"
           >
             <span class="material-symbols-outlined">analytics</span>
             <span class="font-label-md">Analytics</span>
           </a>
           <a
-            class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800"
+            class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl"
             href="budget.html"
           >
             <span class="material-symbols-outlined"
@@ -322,45 +323,75 @@
             <span class="font-label-md">Budget</span>
           </a>
           <a
-            class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800"
+            class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl"
             href="settings.html"
           >
             <span class="material-symbols-outlined">settings</span>
             <span class="font-label-md">Settings</span>
           </a>
         </nav>
-
         <div
           class="p-4 mt-auto border-t border-slate-100 dark:border-slate-700"
         >
-          <div
-            class="flex items-center gap-3 p-2 bg-surface-container-low dark:bg-slate-800 rounded-xl"
+          <a
+            href="settings.html"
+            class="flex items-center gap-3 p-2 bg-surface-container-low dark:bg-slate-800 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
           >
-            <img
-              alt="User Profile"
-              class="w-10 h-10 rounded-full border-2 border-white shadow-sm"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuAs77p-vP8nU90Ps89eS5qj6_aeiRvVgrN7no6dbPxT2_oKdZyyS03XLULtpy_Pp38RV0285HcoBlThPyoO-D2wlwkr4FZD2NC-9BjTz02B-VrpZU9eucKhikLj06U98w7UdTEJ-rzFE3R0t_lKtkRRtGMuBHljONct60UR95-RcAQmI9s6PmaE9FCm9-5GJ3y26cbNUBk9O2XfP_ZzJod50elOps-O4lcAqJpW7NaObJYUQbz1INLDY8cOg5z-_vi87mKzLsVv73EI"
-            />
+            <div
+              id="profile-pic"
+              class="w-10 h-10 rounded-full border-2 border-white shadow-sm overflow-hidden flex items-center justify-center bg-slate-200 dark:bg-slate-700"
+            >
+              <span class="material-symbols-outlined text-3xl text-slate-500"
+                >person</span
+              >
+            </div>
             <div class="overflow-hidden">
               <p
                 class="font-label-md text-on-surface dark:text-white truncate"
                 id="display-username"
-              >
-                Alex Sterling
-              </p>
-              <p
-                class="text-[10px] text-slate-500 dark:text-slate-400 truncate"
-              >
-                Premium Member
-              </p>
+              ></p>
             </div>
-          </div>
+          </a>
         </div>
       </aside>
 
-      <!-- TopNavBar -->
+      <!-- Mobile Top Bar -->
       <header
-        class="sticky top-0 w-full flex items-center justify-between px-6 z-40 ml-64 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md h-16 border-b border-slate-200 dark:border-slate-700 shadow-sm"
+        class="md:hidden fixed top-0 left-0 right-0 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md z-50 border-b border-slate-200 dark:border-slate-700 h-16 flex items-center px-4"
+      >
+        <button
+          onclick="toggleMobileSidebar()"
+          class="p-2 -ml-2 text-slate-700 dark:text-slate-300"
+        >
+          <span class="material-symbols-outlined text-3xl">menu</span>
+        </button>
+        <div class="flex-1 flex justify-center">
+          <div class="flex items-center gap-2">
+            <div
+              class="w-8 h-8 bg-primary rounded-xl flex items-center justify-center text-white"
+            >
+              <span class="material-symbols-outlined text-xl">payments</span>
+            </div>
+            <h1 class="font-black text-xl text-slate-900 dark:text-white">
+              FinTrack
+            </h1>
+          </div>
+        </div>
+        <div class="flex items-center gap-3">
+          <button onclick="toggleDarkMode()" class="p-2">
+            <span class="material-symbols-outlined" id="theme-icon-mobile"
+              >dark_mode</span
+            >
+          </button>
+          <button onclick="logout()" class="p-2">
+            <span class="material-symbols-outlined">logout</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- Desktop TopNavBar -->
+      <header
+        class="hidden md:flex sticky top-0 w-full items-center justify-between px-6 z-40 ml-64 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md h-16 border-b border-slate-200 dark:border-slate-700 shadow-sm"
         style="width: calc(100% - 16rem)"
       >
         <div class="flex items-center gap-4">
@@ -394,10 +425,14 @@
       </header>
 
       <!-- Main Content -->
-      <main class="ml-64 p-8 min-h-screen bg-surface dark:bg-slate-950">
-        <div class="max-w-7xl mx-auto space-y-8">
+      <main
+        class="md:ml-64 pt-16 md:pt-0 min-h-screen bg-surface dark:bg-slate-950 transition-all"
+      >
+        <div class="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8 space-y-8">
           <!-- Summary Cards -->
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div
+            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6"
+          >
             <div
               class="bg-primary-container p-6 rounded-xl elevation-1 flex items-center justify-between"
             >
@@ -409,20 +444,19 @@
                 </p>
                 <h3
                   id="total-balance"
-                  class="text-display font-display text-white mt-1"
+                  class="text-display font-display text-white mt-1 text-3xl sm:text-4xl"
                 >
                   $0.00
                 </h3>
               </div>
               <div
-                class="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center text-white"
+                class="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center text-white flex-shrink-0"
               >
                 <span class="material-symbols-outlined text-3xl"
                   >account_balance</span
                 >
               </div>
             </div>
-
             <div
               class="bg-white dark:bg-slate-800 p-6 rounded-xl elevation-1 border-l-4 border-secondary flex items-center justify-between"
             >
@@ -434,7 +468,7 @@
                 </p>
                 <h3
                   id="total-income"
-                  class="text-h1 font-h1 text-secondary mt-1"
+                  class="text-h1 font-h1 text-secondary mt-1 text-3xl sm:text-4xl"
                 >
                   $0.00
                 </h3>
@@ -443,14 +477,13 @@
                 </p>
               </div>
               <div
-                class="w-12 h-12 bg-secondary/10 rounded-lg flex items-center justify-center text-secondary"
+                class="w-12 h-12 bg-secondary/10 rounded-lg flex items-center justify-center text-secondary flex-shrink-0"
               >
                 <span class="material-symbols-outlined text-3xl"
                   >arrow_downward</span
                 >
               </div>
             </div>
-
             <div
               class="bg-white dark:bg-slate-800 p-6 rounded-xl elevation-1 border-l-4 border-tertiary flex items-center justify-between"
             >
@@ -462,7 +495,7 @@
                 </p>
                 <h3
                   id="total-expenses"
-                  class="text-h1 font-h1 text-tertiary mt-1"
+                  class="text-h1 font-h1 text-tertiary mt-1 text-3xl sm:text-4xl"
                 >
                   $0.00
                 </h3>
@@ -471,7 +504,7 @@
                 </p>
               </div>
               <div
-                class="w-12 h-12 bg-tertiary/10 rounded-lg flex items-center justify-center text-tertiary"
+                class="w-12 h-12 bg-tertiary/10 rounded-lg flex items-center justify-center text-tertiary flex-shrink-0"
               >
                 <span class="material-symbols-outlined text-3xl"
                   >arrow_upward</span
@@ -484,7 +517,7 @@
           <div class="bento-grid">
             <!-- Quick Add -->
             <section
-              class="col-span-12 lg:col-span-4 bg-white dark:bg-slate-800 p-6 rounded-xl elevation-1"
+              class="col-span-12 lg:col-span-4 bg-white dark:bg-slate-800 p-5 sm:p-6 rounded-xl elevation-1"
             >
               <div class="flex items-center justify-between mb-6">
                 <h4 class="font-h1 text-h1 text-on-surface dark:text-white">
@@ -502,7 +535,7 @@
                   >
                   <input
                     id="desc"
-                    class="w-full border-slate-200 dark:border-slate-600 rounded-lg px-4 py-2 border bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
+                    class="w-full border-slate-200 dark:border-slate-600 rounded-lg px-4 py-2.5 border bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
                     placeholder="Rent, Salary..."
                     required
                   />
@@ -517,7 +550,7 @@
                       id="amount"
                       type="number"
                       step="0.01"
-                      class="w-full border-slate-200 dark:border-slate-600 rounded-lg px-4 py-2 border bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
+                      class="w-full border-slate-200 dark:border-slate-600 rounded-lg px-4 py-2.5 border bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
                       placeholder="0.00"
                       required
                     />
@@ -530,7 +563,7 @@
                     <input
                       id="date"
                       type="date"
-                      class="w-full border-slate-200 dark:border-slate-600 rounded-lg px-4 py-2 border bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
+                      class="w-full border-slate-200 dark:border-slate-600 rounded-lg px-4 py-2.5 border bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
                       required
                     />
                   </div>
@@ -542,12 +575,12 @@
                   >
                   <select
                     id="category"
-                    class="w-full border-slate-200 dark:border-slate-600 rounded-lg px-4 py-2 border bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
+                    class="w-full border-slate-200 dark:border-slate-600 rounded-lg px-4 py-2.5 border bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
                   ></select>
                 </div>
                 <button
                   type="submit"
-                  class="w-full bg-primary text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+                  class="w-full bg-primary text-white py-3.5 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
                 >
                   Save Transaction
                 </button>
@@ -557,23 +590,23 @@
             <!-- Monthly Budget -->
             <div class="col-span-12 lg:col-span-8">
               <div
-                class="bg-white dark:bg-slate-800 p-6 rounded-xl elevation-1"
+                class="bg-white dark:bg-slate-800 p-5 sm:p-6 rounded-xl elevation-1"
               >
                 <div class="flex items-center justify-between mb-5">
                   <h4
                     id="budget-title"
-                    class="font-h2 text-h2 text-on-surface dark:text-white"
+                    class="font-h2 text-h2 text-on-surface dark:text-white text-xl sm:text-2xl"
                   >
                     Monthly Budget
                   </h4>
                   <span
-                    class="text-xs text-slate-500 dark:text-slate-400 font-medium"
+                    class="text-xs text-slate-500 dark:text-slate-400 font-medium hidden sm:block"
                     >Scroll for more ↓</span
                   >
                 </div>
                 <div
                   id="budget-list"
-                  class="space-y-6 max-h-[340px] overflow-y-auto pr-3"
+                  class="space-y-6 pr-2 overflow-y-auto"
                 ></div>
               </div>
             </div>
@@ -583,19 +616,21 @@
               class="col-span-12 bg-white dark:bg-slate-800 rounded-xl elevation-1 overflow-hidden"
             >
               <div
-                class="p-6 border-b border-slate-100 dark:border-slate-700 flex items-center justify-between"
+                class="p-5 sm:p-6 border-b border-slate-100 dark:border-slate-700 flex items-center justify-between"
               >
-                <h4 class="font-h1 text-h1 text-on-surface dark:text-white">
+                <h4
+                  class="font-h1 text-h1 text-on-surface dark:text-white text-xl sm:text-2xl"
+                >
                   Recent Transactions
                 </h4>
                 <a
                   href="transactions.html"
-                  class="text-primary font-label-md hover:underline"
+                  class="text-primary font-label-md hover:underline whitespace-nowrap"
                   >View All</a
                 >
               </div>
               <div class="overflow-x-auto">
-                <table class="w-full text-left">
+                <table class="w-full text-left min-w-[600px]">
                   <thead
                     class="bg-surface-container-low dark:bg-slate-700 text-slate-500 dark:text-slate-400 font-label-sm uppercase tracking-wider"
                   >
@@ -633,7 +668,6 @@
         "Travel",
         "Miscellaneous",
       ];
-
       let currentUser = null;
       let transactions = [];
       let budgets = {};
@@ -665,7 +699,6 @@
         document.getElementById("auth-btn-text").textContent = isLogin
           ? "Create Account"
           : "Login";
-
         const toggleText = document.getElementById("toggle-text");
         toggleText.innerHTML = isLogin
           ? `Already have an account? <span onclick="toggleAuthMode()" class="text-primary cursor-pointer hover:underline">Login</span>`
@@ -677,18 +710,18 @@
         html.classList.toggle("dark");
         const isDark = html.classList.contains("dark");
         localStorage.setItem("fintrack_theme", isDark ? "dark" : "light");
-        document.getElementById("theme-icon").textContent = isDark
-          ? "light_mode"
-          : "dark_mode";
+        const icon = document.getElementById("theme-icon");
+        const iconMobile = document.getElementById("theme-icon-mobile");
+        if (icon) icon.textContent = isDark ? "light_mode" : "dark_mode";
+        if (iconMobile)
+          iconMobile.textContent = isDark ? "light_mode" : "dark_mode";
       }
 
       function handleAuth() {
         const username = document.getElementById("username").value.trim();
         const password = document.getElementById("password").value.trim();
         if (!username || !password) return alert("Please fill both fields");
-
         let users = JSON.parse(localStorage.getItem("fintrack_users") || "{}");
-
         if (
           document.getElementById("auth-btn-text").textContent ===
           "Create Account"
@@ -709,10 +742,15 @@
         }
       }
 
+      function toggleMobileSidebar() {
+        document
+          .getElementById("sidebar")
+          .classList.toggle("-translate-x-full");
+      }
+
       function showMainApp() {
         document.getElementById("auth-screen").classList.add("hidden");
         document.getElementById("main-app").classList.remove("hidden");
-
         document.getElementById("display-username").textContent = currentUser;
         document.getElementById("current-date").textContent =
           new Date().toLocaleDateString("en-US", {
@@ -720,12 +758,11 @@
             month: "short",
             day: "numeric",
           });
-
         updateBudgetTitle();
-
         loadData();
         populateCategories();
         updateAll();
+        loadProfileImage();
       }
 
       function loadData() {
@@ -735,8 +772,6 @@
         budgets = JSON.parse(
           localStorage.getItem(`budgets_${currentUser}`) || "{}",
         );
-
-        // Migrate old flat budget structure to per-month
         const currentKey = getCurrentMonthKey();
         if (Object.keys(budgets).length > 0 && !budgets[currentKey]) {
           const oldBudgets = { ...budgets };
@@ -763,7 +798,6 @@
         defaultOpt.disabled = true;
         defaultOpt.selected = true;
         select.appendChild(defaultOpt);
-
         categories.forEach((cat) => {
           const opt = document.createElement("option");
           opt.value = cat;
@@ -780,10 +814,8 @@
           const amount = parseFloat(document.getElementById("amount").value);
           const date = document.getElementById("date").value;
           const category = document.getElementById("category").value;
-
           if (!desc || !amount || !date || !category)
             return alert("Please fill all fields");
-
           transactions.unshift({
             id: Date.now(),
             description: desc,
@@ -810,7 +842,6 @@
           if (t.category === "Income") income += t.amount;
           else expenses += t.amount;
         });
-
         document.getElementById("total-balance").textContent =
           "$" + (income - expenses).toFixed(2);
         document.getElementById("total-income").textContent =
@@ -831,7 +862,6 @@
           month: "long",
           year: "numeric",
         });
-
         document.getElementById("budget-title").textContent =
           "Monthly Budget - " + formatted;
       }
@@ -845,14 +875,14 @@
           row.className =
             "hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors";
           row.innerHTML = `
-          <td class="px-6 py-4">${tx.description}</td>
-          <td class="px-6 py-4"><span class="px-3 py-1 text-xs rounded-full ${isIncome ? "bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300" : "bg-orange-100 dark:bg-orange-900 text-orange-700 dark:text-orange-300"}">${tx.category}</span></td>
-          <td class="px-6 py-4 text-slate-500 dark:text-slate-400">${tx.date}</td>
-          <td class="px-6 py-4 font-bold text-right ${isIncome ? "text-secondary" : "text-tertiary"}">${isIncome ? "+" : "-"}$${Math.abs(tx.amount).toFixed(2)}</td>
-          <td class="px-6 py-4 text-center">
-            <button onclick="deleteTransaction(${tx.id})" class="text-slate-400 hover:text-red-600"><span class="material-symbols-outlined">delete</span></button>
-          </td>
-        `;
+            <td class="px-6 py-4">${tx.description}</td>
+            <td class="px-6 py-4"><span class="px-3 py-1 text-xs rounded-full ${isIncome ? "bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300" : "bg-orange-100 dark:bg-orange-900 text-orange-700 dark:text-orange-300"}">${tx.category}</span></td>
+            <td class="px-6 py-4 text-slate-500 dark:text-slate-400">${tx.date}</td>
+            <td class="px-6 py-4 font-bold text-right ${isIncome ? "text-secondary" : "text-tertiary"}">${isIncome ? "+" : "-"}$${Math.abs(tx.amount).toFixed(2)}</td>
+            <td class="px-6 py-4 text-center">
+              <button onclick="deleteTransaction(${tx.id})" class="text-slate-400 hover:text-red-600"><span class="material-symbols-outlined">delete</span></button>
+            </td>
+          `;
           tbody.appendChild(row);
         });
       }
@@ -868,17 +898,15 @@
       function renderBudgetSection() {
         const container = document.getElementById("budget-list");
         container.innerHTML = "";
-
         const currentKey = getCurrentMonthKey();
         if (!budgets[currentKey]) budgets[currentKey] = {};
-
         const currentBudgets = budgets[currentKey];
         const currentTx = getCurrentMonthTransactions();
-
         const spentByCat = {};
-        currentTx.forEach((t) => {
-          spentByCat[t.category] = (spentByCat[t.category] || 0) + t.amount;
-        });
+        currentTx.forEach(
+          (t) =>
+            (spentByCat[t.category] = (spentByCat[t.category] || 0) + t.amount),
+        );
 
         categories.forEach((cat) => {
           if (cat === "Income") return;
@@ -886,21 +914,20 @@
           const budget = currentBudgets[cat] || 0;
           const percent =
             budget > 0 ? Math.min(Math.round((spent / budget) * 100), 100) : 0;
-
           const div = document.createElement("div");
           div.innerHTML = `
-          <div class="flex justify-between items-center mb-2">
-            <span class="font-medium dark:text-white">${cat}</span>
-            <button onclick="editSingleBudget('${cat}')" class="text-xs px-3 py-1 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 rounded-lg transition-colors">Edit</button>
-          </div>
-          <div class="flex justify-between text-sm text-slate-500 dark:text-slate-400 mb-1">
-            <span>Spent: $${spent.toFixed(0)}</span>
-            <span>Budget: $${budget}</span>
-          </div>
-          <div class="w-full h-2.5 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
-            <div class="h-full ${percent > 85 ? "bg-red-500" : "bg-primary"}" style="width: ${percent}%"></div>
-          </div>
-        `;
+            <div class="flex justify-between items-center mb-2">
+              <span class="font-medium dark:text-white">${cat}</span>
+              <button onclick="editSingleBudget('${cat}')" class="text-xs px-3 py-1 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 rounded-lg transition-colors">Edit</button>
+            </div>
+            <div class="flex justify-between text-sm text-slate-500 dark:text-slate-400 mb-1">
+              <span>Spent: $${spent.toFixed(0)}</span>
+              <span>Budget: $${budget}</span>
+            </div>
+            <div class="w-full h-2.5 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
+              <div class="h-full ${percent > 85 ? "bg-red-500" : "bg-primary"}" style="width: ${percent}%"></div>
+            </div>
+          `;
           container.appendChild(div);
         });
       }
@@ -908,17 +935,25 @@
       function editSingleBudget(category) {
         const currentKey = getCurrentMonthKey();
         if (!budgets[currentKey]) budgets[currentKey] = {};
-
         const current = budgets[currentKey][category] || 0;
         const newBudget = prompt(
           `Set monthly budget for ${category} (${currentKey})`,
           current,
         );
-
         if (newBudget !== null) {
           budgets[currentKey][category] = parseFloat(newBudget) || 0;
           saveData();
           renderBudgetSection();
+        }
+      }
+
+      function loadProfileImage() {
+        const imgContainer = document.getElementById("profile-pic");
+        const savedImage = localStorage.getItem(`profile_pic_${currentUser}`);
+        if (savedImage) {
+          imgContainer.innerHTML = `<img src="${savedImage}" class="w-full h-full object-cover" />`;
+        } else {
+          imgContainer.innerHTML = `<span class="material-symbols-outlined text-3xl text-slate-500">person</span>`;
         }
       }
 
@@ -935,12 +970,25 @@
           currentUser = savedUser;
           showMainApp();
         }
-
         const savedTheme = localStorage.getItem("fintrack_theme");
         if (savedTheme === "dark") {
           document.documentElement.classList.add("dark");
-          document.getElementById("theme-icon").textContent = "light_mode";
+          const icon = document.getElementById("theme-icon");
+          const iconMobile = document.getElementById("theme-icon-mobile");
+          if (icon) icon.textContent = "light_mode";
+          if (iconMobile) iconMobile.textContent = "light_mode";
         }
+
+        document.addEventListener("click", function (e) {
+          const sidebar = document.getElementById("sidebar");
+          if (
+            window.innerWidth < 768 &&
+            !sidebar.contains(e.target) &&
+            !e.target.closest('button[onclick="toggleMobileSidebar()"]')
+          ) {
+            sidebar.classList.add("-translate-x-full");
+          }
+        });
       };
     </script>
   </body>

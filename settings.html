@@ -4,7 +4,13 @@
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>FinTrack - Settings</title>
-
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <script>
+      (function () {
+        const theme = localStorage.getItem("fintrack_theme");
+        if (theme === "dark") document.documentElement.classList.add("dark");
+      })();
+    </script>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link
       href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800;900&amp;family=Inter:wght@400;500;600&amp;display=swap"
@@ -75,18 +81,6 @@
               xl: "0.75rem",
               full: "9999px",
             },
-            spacing: {
-              "2xl": "48px",
-              base: "8px",
-              sm: "8px",
-              xs: "4px",
-              "container-max": "1280px",
-              lg: "24px",
-              md: "16px",
-              "3xl": "64px",
-              gutter: "24px",
-              xl: "32px",
-            },
             fontFamily: {
               h2: ["Manrope"],
               "label-sm": ["Inter"],
@@ -138,155 +132,261 @@
       .elevation-1 {
         box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.05);
       }
+      .dark body {
+        background-color: #0f172a;
+      }
+      .dark .bg-white,
+      .dark .elevation-1 {
+        background-color: #1e2937;
+      }
+      .dark .text-slate-900 {
+        color: #f1f5f9;
+      }
+      .dark .text-slate-500 {
+        color: #94a3b8;
+      }
     </style>
   </head>
   <body class="bg-background font-body-md text-on-surface antialiased">
-    <!-- SideNavBar - Consistent with all other pages -->
+    <!-- SideNavBar (Exact same as index.html) -->
     <aside
-      class="fixed left-0 top-0 flex flex-col h-full z-50 bg-white border-r border-slate-200 h-screen w-64 font-manrope antialiased transition-all duration-200 ease-in-out"
+      id="sidebar"
+      class="fixed left-0 top-0 flex flex-col h-full z-50 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-700 w-64 transition-all duration-300 ease-in-out md:translate-x-0 -translate-x-full"
     >
       <div class="p-6 flex items-center gap-3">
         <div
           class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white"
         >
-          <span
-            class="material-symbols-outlined"
-            style="font-variation-settings: &quot;FILL&quot; 1"
-            >account_balance_wallet</span
-          >
+          <span class="material-symbols-outlined">payments</span>
         </div>
         <div>
-          <h1 class="text-xl font-black text-slate-900">FinTrack</h1>
-          <p class="text-xs text-slate-500 uppercase tracking-wider font-bold">
+          <h1 class="text-xl font-black text-slate-900 dark:text-white">
+            FinTrack
+          </h1>
+          <p
+            class="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider font-bold"
+          >
             Personal Wealth
           </p>
         </div>
       </div>
-
       <nav class="flex-1 mt-6 px-4 space-y-2">
         <a
-          class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 hover:text-slate-900 transition-all duration-200 ease-in-out"
+          class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl"
           href="index.html"
         >
           <span class="material-symbols-outlined">dashboard</span>
-          <span class="font-label-md text-label-md">Dashboard</span>
+          <span class="font-label-md">Dashboard</span>
         </a>
         <a
-          class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 hover:text-slate-900 transition-all duration-200 ease-in-out"
+          class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl"
           href="transactions.html"
         >
           <span class="material-symbols-outlined">receipt_long</span>
-          <span class="font-label-md text-label-md">Transactions</span>
+          <span class="font-label-md">Transactions</span>
         </a>
         <a
-          class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 hover:text-slate-900 transition-all duration-200 ease-in-out"
+          class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl"
           href="analytics.html"
         >
           <span class="material-symbols-outlined">analytics</span>
-          <span class="font-label-md text-label-md">Analytics</span>
+          <span class="font-label-md">Analytics</span>
         </a>
         <a
-          class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 hover:text-slate-900 transition-all duration-200 ease-in-out"
+          class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl"
           href="budget.html"
         >
           <span class="material-symbols-outlined">account_balance_wallet</span>
-          <span class="font-label-md text-label-md">Budget</span>
+          <span class="font-label-md">Budget</span>
         </a>
         <a
-          class="flex items-center gap-3 px-4 py-3 bg-blue-50 text-blue-600 font-semibold border-r-4 border-blue-600 transition-all duration-200 ease-in-out"
+          class="flex items-center gap-3 px-4 py-3 bg-blue-50 dark:bg-blue-950 text-blue-600 font-semibold border-r-4 border-blue-600 rounded-r-xl"
           href="settings.html"
         >
           <span class="material-symbols-outlined">settings</span>
-          <span class="font-label-md text-label-md">Settings</span>
+          <span class="font-label-md">Settings</span>
         </a>
       </nav>
-
-      <div class="p-4 mt-auto border-t border-slate-100">
-        <div
-          class="flex items-center gap-3 p-2 bg-surface-container-low rounded-xl"
+      <div class="p-4 mt-auto border-t border-slate-100 dark:border-slate-700">
+        <a
+          href="settings.html"
+          class="flex items-center gap-3 p-2 bg-surface-container-low dark:bg-slate-800 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
         >
-          <img
-            alt="User Profile"
-            class="w-10 h-10 rounded-full border-2 border-white shadow-sm"
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAs77p-vP8nU90Ps89eS5qj6_aeiRvVgrN7no6dbPxT2_oKdZyyS03XLULtpy_Pp38RV0285HcoBlThPyoO-D2wlwkr4FZD2NC-9BjTz02B-VrpZU9eucKhikLj06U98w7UdTEJ-rzFE3R0t_lKtkRRtGMuBHljONct60UR95-RcAQmI9s6PmaE9FCm9-5GJ3y26cbNUBk9O2XfP_ZzJod50elOps-O4lcAqJpW7NaObJYUQbz1INLDY8cOg5z-_vi87mKzLsVv73EI"
-          />
-          <div class="overflow-hidden">
-            <p class="font-label-md text-on-surface truncate">Alex Sterling</p>
-            <p class="text-[10px] text-slate-500 truncate">Premium Member</p>
+          <div
+            id="sidebar-profile-pic"
+            class="w-10 h-10 rounded-full border-2 border-white shadow-sm overflow-hidden flex items-center justify-center bg-slate-200 dark:bg-slate-700"
+          >
+            <span class="material-symbols-outlined text-3xl text-slate-500"
+              >person</span
+            >
           </div>
-        </div>
+          <div class="overflow-hidden">
+            <p
+              class="font-label-md text-on-surface dark:text-white truncate"
+              id="display-username"
+            ></p>
+          </div>
+        </a>
       </div>
     </aside>
 
-    <!-- TopNavBar -->
+    <!-- Mobile Top Bar -->
     <header
-      class="sticky top-0 w-full flex items-center justify-between px-6 z-40 ml-64 bg-white/80 backdrop-blur-md h-16 border-b border-slate-200 shadow-sm"
+      class="md:hidden fixed top-0 left-0 right-0 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md z-50 border-b border-slate-200 dark:border-slate-700 h-16 flex items-center px-4"
+    >
+      <button
+        onclick="toggleMobileSidebar()"
+        class="p-2 -ml-2 text-slate-700 dark:text-slate-300"
+      >
+        <span class="material-symbols-outlined text-3xl">menu</span>
+      </button>
+      <div class="flex-1 flex justify-center">
+        <div class="flex items-center gap-2">
+          <div
+            class="w-8 h-8 bg-primary rounded-xl flex items-center justify-center text-white"
+          >
+            <span class="material-symbols-outlined text-xl">payments</span>
+          </div>
+          <h1 class="font-black text-xl text-slate-900 dark:text-white">
+            FinTrack
+          </h1>
+        </div>
+      </div>
+      <div class="flex items-center gap-1">
+        <button
+          onclick="toggleDarkMode()"
+          class="p-3 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl"
+        >
+          <span
+            class="material-symbols-outlined text-2xl"
+            id="theme-icon-mobile"
+            >dark_mode</span
+          >
+        </button>
+        <button
+          onclick="logout()"
+          class="p-3 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl"
+        >
+          <span class="material-symbols-outlined text-2xl">logout</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Desktop TopNavBar -->
+    <header
+      class="hidden md:flex sticky top-0 w-full items-center justify-between px-6 z-40 ml-64 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md h-16 border-b border-slate-200 dark:border-slate-700 shadow-sm"
       style="width: calc(100% - 16rem)"
     >
       <div class="flex items-center gap-4">
-        <h2 class="font-h2 text-h2 text-slate-900">Settings</h2>
+        <h2 class="font-h2 text-h2 text-slate-900 dark:text-white">Settings</h2>
       </div>
       <div class="flex items-center gap-6">
         <div class="flex items-center gap-4 text-slate-500">
-          <button class="hover:text-blue-600 transition-colors">
-            <span class="material-symbols-outlined">dark_mode</span>
+          <button
+            onclick="toggleDarkMode()"
+            class="hover:text-blue-600 transition-colors"
+          >
+            <span class="material-symbols-outlined" id="theme-icon"
+              >dark_mode</span
+            >
           </button>
-          <div class="relative">
-            <button class="hover:text-blue-600 transition-colors">
-              <span class="material-symbols-outlined">notifications</span>
-            </button>
-            <span
-              class="absolute -top-1 -right-1 w-2 h-2 bg-error rounded-full border-2 border-white"
-            ></span>
-          </div>
-          <button class="hover:text-blue-600 transition-colors">
-            <span class="material-symbols-outlined">help</span>
+          <button
+            onclick="logout()"
+            class="hover:text-blue-600 transition-colors"
+          >
+            <span class="material-symbols-outlined">logout</span>
           </button>
         </div>
-        <div class="h-8 w-[1px] bg-slate-200"></div>
-        <p class="text-sm font-medium text-slate-600">October 2023</p>
+        <div class="h-8 w-[1px] bg-slate-200 dark:bg-slate-700"></div>
+        <p
+          id="current-date"
+          class="text-sm font-medium text-slate-600 dark:text-slate-400"
+        ></p>
       </div>
     </header>
 
     <!-- Main Content -->
-    <main class="ml-64 p-8 min-h-screen bg-surface">
-      <div class="max-w-4xl mx-auto space-y-10">
+    <main
+      class="md:ml-64 pt-16 md:pt-0 min-h-screen bg-surface dark:bg-slate-950"
+    >
+      <div class="max-w-4xl mx-auto p-4 sm:p-6 lg:p-8 space-y-10">
         <!-- Profile Settings -->
         <section>
           <div class="mb-6">
-            <h2 class="font-h2 text-h2">Profile Settings</h2>
-            <p class="text-slate-500">
-              Manage your personal information and account details.
-            </p>
+            <h2 class="font-h2 text-h2 dark:text-white">Profile Settings</h2>
+            <p class="text-slate-500">Manage your account information</p>
           </div>
-          <div class="bg-white rounded-2xl elevation-1 p-8">
+          <div class="bg-white dark:bg-slate-800 rounded-3xl elevation-1 p-8">
+            <!-- Profile Picture -->
+            <div class="flex flex-col items-center mb-8">
+              <label class="cursor-pointer">
+                <input
+                  type="file"
+                  id="profile-upload"
+                  accept="image/*"
+                  class="hidden"
+                  onchange="uploadProfileImage(event)"
+                />
+                <div
+                  id="main-profile-pic"
+                  class="w-24 h-24 rounded-full border-4 border-white shadow-md overflow-hidden flex items-center justify-center bg-slate-200 dark:bg-slate-700"
+                >
+                  <span
+                    class="material-symbols-outlined text-6xl text-slate-500"
+                    >person</span
+                  >
+                </div>
+              </label>
+              <p class="text-sm text-slate-500 mt-3">
+                Click image to change profile picture
+              </p>
+            </div>
+
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label class="block text-label-md text-slate-500 mb-2"
-                  >Full Name</label
+                <label
+                  class="block text-sm font-medium text-slate-600 dark:text-slate-400 mb-2"
+                  >Username</label
                 >
                 <input
-                  class="w-full px-5 py-3 border border-slate-200 rounded-2xl focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
+                  id="username"
                   type="text"
-                  value="Alexander Sterling"
-                />
-              </div>
-              <div>
-                <label class="block text-label-md text-slate-500 mb-2"
-                  >Email Address</label
-                >
-                <input
-                  class="w-full px-5 py-3 border border-slate-200 rounded-2xl focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
-                  type="email"
-                  value="alex.sterling@fintrack.pro"
+                  class="w-full px-5 py-3 border border-slate-200 dark:border-slate-600 rounded-2xl bg-slate-50 dark:bg-slate-700 text-slate-500 dark:text-slate-400"
+                  readonly
                 />
               </div>
             </div>
-            <div class="mt-8 flex justify-end">
+
+            <!-- Password Change -->
+            <div class="mt-10">
+              <h3 class="font-semibold mb-4 dark:text-white">
+                Change Password
+              </h3>
+              <div class="space-y-4">
+                <input
+                  id="old-password"
+                  type="password"
+                  placeholder="Current Password"
+                  class="w-full px-5 py-3 border border-slate-200 dark:border-slate-600 rounded-2xl dark:bg-slate-700 dark:text-white"
+                />
+                <input
+                  id="new-password"
+                  type="password"
+                  placeholder="New Password"
+                  class="w-full px-5 py-3 border border-slate-200 dark:border-slate-600 rounded-2xl dark:bg-slate-700 dark:text-white"
+                />
+                <input
+                  id="confirm-password"
+                  type="password"
+                  placeholder="Confirm New Password"
+                  class="w-full px-5 py-3 border border-slate-200 dark:border-slate-600 rounded-2xl dark:bg-slate-700 dark:text-white"
+                />
+              </div>
               <button
-                class="bg-primary text-white px-8 py-3 rounded-2xl font-medium hover:bg-blue-700 transition-colors"
+                onclick="changePassword()"
+                class="mt-6 bg-primary text-white px-8 py-3 rounded-2xl font-medium hover:bg-blue-700 transition-colors"
               >
-                Save Changes
+                Update Password
               </button>
             </div>
           </div>
@@ -295,108 +395,302 @@
         <!-- Appearance -->
         <section>
           <div class="mb-6">
-            <h2 class="font-h2 text-h2">Appearance</h2>
-            <p class="text-slate-500">Customize how FinTrack looks for you.</p>
+            <h2 class="font-h2 text-h2 dark:text-white">Appearance</h2>
+            <p class="text-slate-500">Customize theme and display</p>
           </div>
           <div
-            class="bg-white rounded-2xl elevation-1 p-8 flex items-center justify-between"
+            class="bg-white dark:bg-slate-800 rounded-3xl elevation-1 p-8 flex items-center justify-between"
           >
-            <div class="flex items-center gap-5">
-              <div
-                class="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center text-primary"
+            <div class="flex items-center gap-4">
+              <span class="material-symbols-outlined text-3xl text-primary"
+                >dark_mode</span
               >
-                <span class="material-symbols-outlined text-3xl"
-                  >dark_mode</span
-                >
-              </div>
               <div>
-                <h3 class="font-medium">Dark Mode</h3>
+                <p class="font-medium dark:text-white">Dark Mode</p>
                 <p class="text-sm text-slate-500">
-                  Reduce eye strain in low light
+                  Switch between light and dark themes
                 </p>
               </div>
             </div>
-            <label class="relative inline-flex items-center cursor-pointer">
-              <input type="checkbox" class="sr-only peer" checked />
-              <div
-                class="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border after:border-gray-300 after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"
-              ></div>
-            </label>
+            <button
+              onclick="toggleDarkMode()"
+              class="px-6 py-3 bg-slate-100 dark:bg-slate-700 rounded-2xl font-medium dark:text-white"
+            >
+              <span id="theme-text">Enable Dark Mode</span>
+            </button>
           </div>
         </section>
 
         <!-- Data Management -->
         <section>
           <div class="mb-6">
-            <h2 class="font-h2 text-h2">Data Management</h2>
-            <p class="text-slate-500">
-              Export your data or manage your account storage.
-            </p>
+            <h2 class="font-h2 text-h2 dark:text-white">Data Management</h2>
+            <p class="text-slate-500">Backup, restore, or clear your data</p>
           </div>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <!-- Backup & Export -->
-            <div class="bg-white rounded-2xl elevation-1 p-8">
-              <div class="flex items-center gap-4 mb-6">
-                <span class="material-symbols-outlined text-primary text-3xl"
-                  >database</span
-                >
-                <h3 class="font-medium">Backup & Sync</h3>
-              </div>
-              <div class="space-y-3">
-                <button
-                  class="w-full flex items-center justify-between p-4 bg-slate-50 hover:bg-slate-100 rounded-2xl transition-colors group"
-                >
-                  <div class="flex items-center gap-3">
-                    <span
-                      class="material-symbols-outlined text-slate-500 group-hover:text-primary"
-                      >upload_file</span
-                    >
-                    <span class="font-medium">Import Data</span>
-                  </div>
-                  <span class="material-symbols-outlined text-slate-400"
-                    >chevron_right</span
-                  >
-                </button>
-                <button
-                  class="w-full flex items-center justify-between p-4 bg-slate-50 hover:bg-slate-100 rounded-2xl transition-colors group"
-                >
-                  <div class="flex items-center gap-3">
-                    <span
-                      class="material-symbols-outlined text-slate-500 group-hover:text-primary"
-                      >download</span
-                    >
-                    <span class="font-medium">Export to JSON</span>
-                  </div>
-                  <span class="material-symbols-outlined text-slate-400"
-                    >chevron_right</span
-                  >
-                </button>
-              </div>
-            </div>
-
-            <!-- Danger Zone -->
-            <div
-              class="bg-white rounded-2xl elevation-1 p-8 border border-red-100"
-            >
-              <div class="flex items-center gap-4 mb-6">
-                <span class="material-symbols-outlined text-tertiary text-3xl"
-                  >warning</span
-                >
-                <h3 class="font-medium text-tertiary">Danger Zone</h3>
-              </div>
-              <p class="text-sm text-slate-600 mb-6">
-                Clearing all data will permanently delete every transaction,
-                budget, and setting. This action cannot be undone.
-              </p>
+            <div class="bg-white dark:bg-slate-800 rounded-3xl elevation-1 p-8">
+              <h3 class="font-medium mb-4 dark:text-white">Export Data</h3>
               <button
-                class="w-full py-3 border border-tertiary text-tertiary font-medium rounded-2xl hover:bg-red-50 transition-colors"
+                onclick="exportCSV()"
+                class="w-full py-4 bg-primary text-white rounded-2xl font-medium hover:bg-blue-700 transition-colors"
               >
-                Clear All Data
+                Download Transactions as CSV
               </button>
             </div>
+            <div class="bg-white dark:bg-slate-800 rounded-3xl elevation-1 p-8">
+              <h3 class="font-medium mb-4 dark:text-white">Import Data</h3>
+              <label class="cursor-pointer block">
+                <input
+                  type="file"
+                  id="import-file"
+                  accept=".csv"
+                  class="hidden"
+                  onchange="importCSV(event)"
+                />
+                <div
+                  class="w-full py-4 border-2 border-dashed border-slate-300 dark:border-slate-600 rounded-2xl text-center hover:border-primary transition-colors dark:text-white"
+                >
+                  Upload CSV File
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <!-- Danger Zone -->
+          <div
+            class="mt-10 bg-white dark:bg-slate-800 border border-red-200 dark:border-red-900 rounded-3xl p-8"
+          >
+            <h3 class="text-red-600 font-medium mb-2">Danger Zone</h3>
+            <p class="text-sm text-slate-600 dark:text-slate-400 mb-6">
+              This action cannot be undone.
+            </p>
+            <button
+              onclick="clearAllData()"
+              class="px-8 py-3 border border-red-500 text-red-600 rounded-2xl hover:bg-red-50 transition-colors"
+            >
+              Clear All Data
+            </button>
           </div>
         </section>
       </div>
     </main>
+
+    <script>
+      let currentUser = null;
+
+      function toggleMobileSidebar() {
+        document
+          .getElementById("sidebar")
+          .classList.toggle("-translate-x-full");
+      }
+
+      function showMainApp() {
+        document.getElementById("display-username").textContent =
+          currentUser || "User";
+        document.getElementById("username").value = currentUser || "User";
+        document.getElementById("current-date").textContent =
+          new Date().toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          });
+        loadProfileImage();
+      }
+
+      function changePassword() {
+        const oldPass = document.getElementById("old-password").value.trim();
+        const newPass = document.getElementById("new-password").value.trim();
+        const confirmPass = document
+          .getElementById("confirm-password")
+          .value.trim();
+
+        if (!oldPass || !newPass || !confirmPass)
+          return alert("All fields are required");
+        if (newPass !== confirmPass) return alert("New passwords do not match");
+
+        const users = JSON.parse(
+          localStorage.getItem("fintrack_users") || "{}",
+        );
+        if (users[currentUser] !== btoa(oldPass))
+          return alert("Current password is incorrect");
+
+        users[currentUser] = btoa(newPass);
+        localStorage.setItem("fintrack_users", JSON.stringify(users));
+        alert("Password updated successfully!");
+
+        document.getElementById("old-password").value = "";
+        document.getElementById("new-password").value = "";
+        document.getElementById("confirm-password").value = "";
+      }
+
+      function uploadProfileImage(e) {
+        const file = e.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = function (ev) {
+          localStorage.setItem(`profile_pic_${currentUser}`, ev.target.result);
+          loadProfileImage();
+        };
+        reader.readAsDataURL(file);
+      }
+
+      function loadProfileImage() {
+        const saved = localStorage.getItem(`profile_pic_${currentUser}`);
+
+        const sidebar = document.getElementById("sidebar-profile-pic");
+        const main = document.getElementById("main-profile-pic");
+
+        if (saved) {
+          const imgHTML = `<img src="${saved}" class="w-full h-full object-cover" />`;
+          if (sidebar) sidebar.innerHTML = imgHTML;
+          if (main) main.innerHTML = imgHTML;
+        } else {
+          const iconHTML = `<span class="material-symbols-outlined text-6xl text-slate-500">person</span>`;
+          if (sidebar) sidebar.innerHTML = iconHTML;
+          if (main) main.innerHTML = iconHTML;
+        }
+      }
+
+      function exportCSV() {
+        const transactions = JSON.parse(
+          localStorage.getItem(`transactions_${currentUser}`) || "[]",
+        );
+        if (transactions.length === 0)
+          return alert("No transactions to export");
+
+        let csv = "Date,Description,Category,Amount\n";
+        transactions.forEach((t) => {
+          csv += `"${t.date}","${t.description}","${t.category}",${t.amount}\n`;
+        });
+
+        const blob = new Blob([csv], { type: "text/csv" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `fintrack-export-${new Date().toISOString().slice(0, 10)}.csv`;
+        a.click();
+      }
+
+      function importCSV(e) {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = function (ev) {
+          const text = ev.target.result;
+          const rows = text.trim().split("\n");
+          const newTransactions = [];
+
+          for (let i = 1; i < rows.length; i++) {
+            const cols = rows[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+            if (cols.length >= 4) {
+              newTransactions.push({
+                id: Date.now() + i,
+                date: cols[0].replace(/"/g, ""),
+                description: cols[1].replace(/"/g, ""),
+                category: cols[2].replace(/"/g, ""),
+                amount: parseFloat(cols[3]),
+              });
+            }
+          }
+
+          if (newTransactions.length > 0) {
+            if (confirm(`Import ${newTransactions.length} transactions?`)) {
+              let all = JSON.parse(
+                localStorage.getItem(`transactions_${currentUser}`) || "[]",
+              );
+              all = [...newTransactions, ...all];
+              localStorage.setItem(
+                `transactions_${currentUser}`,
+                JSON.stringify(all),
+              );
+              alert("Data imported successfully!");
+            }
+          }
+        };
+        reader.readAsText(file);
+      }
+
+      function clearAllData() {
+        if (
+          confirm(
+            "⚠️ This will delete ALL transactions permanently. Are you sure?",
+          )
+        ) {
+          if (confirm("Final confirmation: Delete everything?")) {
+            localStorage.removeItem(`transactions_${currentUser}`);
+            localStorage.removeItem(`budgets_${currentUser}`);
+            alert("All data has been cleared.");
+            location.reload();
+          }
+        }
+      }
+
+      function applyThemeUI(isDark) {
+        const icon = document.getElementById("theme-icon");
+        const iconMobile = document.getElementById("theme-icon-mobile");
+        const text = document.getElementById("theme-text");
+
+        const newIcon = isDark ? "light_mode" : "dark_mode";
+
+        if (icon) icon.textContent = newIcon;
+        if (iconMobile) iconMobile.textContent = newIcon;
+        if (text)
+          text.textContent = isDark ? "Disable Dark Mode" : "Enable Dark Mode";
+      }
+
+      function toggleDarkMode() {
+        const html = document.documentElement;
+        html.classList.toggle("dark");
+        const isDark = html.classList.contains("dark");
+        localStorage.setItem("fintrack_theme", isDark ? "dark" : "light");
+
+        applyThemeUI(isDark);
+
+        const icon = document.getElementById("theme-icon");
+        const iconMobile = document.getElementById("theme-icon-mobile");
+        const text = document.getElementById("theme-text");
+        const newIcon = isDark ? "light_mode" : "dark_mode";
+        if (icon) icon.textContent = newIcon;
+        if (iconMobile) iconMobile.textContent = newIcon;
+        if (text)
+          text.textContent = isDark ? "Disable Dark Mode" : "Enable Dark Mode";
+      }
+
+      function logout() {
+        if (confirm("Logout?")) {
+          localStorage.removeItem("fintrack_current_user");
+          location.reload();
+        }
+      }
+
+      window.onload = function () {
+        const savedUser = localStorage.getItem("fintrack_current_user");
+        if (savedUser) {
+          currentUser = savedUser;
+          showMainApp();
+        } else {
+          window.location.href = "index.html";
+        }
+
+        const savedTheme = localStorage.getItem("fintrack_theme");
+        const isDark = savedTheme === "dark";
+
+        if (isDark) {
+          document.documentElement.classList.add("dark");
+        }
+
+        const icon = document.getElementById("theme-icon");
+        const iconMobile = document.getElementById("theme-icon-mobile");
+        const text = document.getElementById("theme-text");
+
+        const newIcon = isDark ? "light_mode" : "dark_mode";
+
+        if (icon) icon.textContent = newIcon;
+        if (iconMobile) iconMobile.textContent = newIcon;
+        if (text)
+          text.textContent = isDark ? "Disable Dark Mode" : "Enable Dark Mode";
+      };
+    </script>
   </body>
 </html>
